@@ -34,7 +34,7 @@ public class CafeApplication {
     @Bean
     ApplicationListener<ApplicationReadyEvent> userListener(CustomerRepository repository) {
         return event->repository
-            .saveAll(Stream.of("Customer A", "Customer B", "Customer C").map(name->new Customer(name, "Username", "Password", "Customer", "Address", "Payment")).collect(Collectors.toList()))
+            .saveAll(Stream.of("Customer A", "Customer B", "Customer C").map(name->new Customer(name, "email@testemail.com", "Username", "Password", "Customer", "Address", "Payment")).collect(Collectors.toList()))
             .forEach(System.out::println);
     }
 

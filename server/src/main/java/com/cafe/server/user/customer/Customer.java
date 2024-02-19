@@ -17,9 +17,9 @@ public class Customer extends User {
     protected Customer() {
     }
 
-    public Customer(String userName, String userUsername, String userPassword, String userRole, String billingAddress,
+    public Customer(String userName, String userEmail, String userUsername, String userPassword, String userRole, String billingAddress,
             String paymentMethod) {
-        super(userName, userUsername, userPassword, userRole);
+        super(userName, userEmail, userUsername, userPassword, userRole);
         this.billingAddress = billingAddress;
         this.paymentMethod = paymentMethod;
         this.orderList = new ArrayList<>();

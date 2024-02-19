@@ -6,23 +6,25 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cafe_user")
+@Table(name = "cafe_users")
 public abstract class User {
 
     @Id
     @GeneratedValue
     private Long userId;
     private String userName;
+    private String userEmail;
     private String userUsername;
     private String userPassword;
     private String userRole;
 
     protected User() {
-        
+
     }
 
-    protected User(String userName, String userUsername, String userPassword, String userRole) {
+    protected User(String userName, String userUsername, String userEmail, String userPassword, String userRole) {
         this.userName = userName;
+        this.userEmail = userEmail;
         this.userUsername = userUsername;
         this.userPassword = userPassword;
         this.userRole = userRole;
@@ -42,6 +44,14 @@ public abstract class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public String getUserUsername() {
@@ -83,4 +93,5 @@ public abstract class User {
     public int hashCode() {
         return 31;
     }
+
 }

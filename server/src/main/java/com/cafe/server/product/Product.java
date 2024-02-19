@@ -3,8 +3,10 @@ package com.cafe.server.product;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "products")
 public abstract class Product {
 
     @Id
