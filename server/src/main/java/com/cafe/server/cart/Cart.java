@@ -3,6 +3,8 @@ package com.cafe.server.cart;
 import java.util.HashMap;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,6 +15,7 @@ import com.cafe.server.product.Product;
 public class Cart {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
     private HashMap<Long, Integer> productMap;
     private Double totalCartPrice;

@@ -16,6 +16,7 @@ public class ProductService {
     public Product getProductByProductId(@NonNull Long productId) throws Exception {
         Optional<Product> productOptional = productRepository.findById(productId);
 
+        // Check if product is present in the optional
         if (productOptional.isPresent()) {
             Product product = productOptional.get();
             return product;
