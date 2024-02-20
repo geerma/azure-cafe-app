@@ -21,6 +21,7 @@ public class Cart {
     private Double totalCartPrice;
 
     protected Cart() {
+        
     }
 
     public Cart(Long userId) {

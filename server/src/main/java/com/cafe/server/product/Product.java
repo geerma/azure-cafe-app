@@ -16,19 +16,16 @@ public abstract class Product {
     private String productDescription;
     private String productCategory;
     private Double productCost;
-    private Integer productStock;
 
     protected Product() {
 
     }
 
-    public Product(String productName, String productDescription, String productCategory, Double productCost,
-            Integer productStock) {
+    public Product(String productName, String productDescription, String productCategory, Double productCost) {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productCategory = productCategory;
         this.productCost = productCost;
-        this.productStock = productStock;
     }
 
     public Long getProductId() {
@@ -69,14 +66,6 @@ public abstract class Product {
 
     public void setProductCost(Double productCost) {
         this.productCost = productCost;
-    }
-
-    public Integer getProductStock() {
-        return productStock;
-    }
-
-    public void setProductStock(Integer productStock) {
-        this.productStock = productStock;
     }
 
     @Override

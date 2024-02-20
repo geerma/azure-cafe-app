@@ -31,27 +31,6 @@ public class CafeApplication {
         SpringApplication.run(CafeApplication.class, args);
     }
 
-    @SuppressWarnings("null")
-    @Bean
-    ApplicationListener<ApplicationReadyEvent> beverageListener(BeverageRepository repository) {
-        return event -> repository
-                .saveAll(Stream.of("Drink A", "Drink B", "Drink C")
-                        .map(name -> new Beverage(name, "Description", "Drink", 5.0, 10, 500))
-                        .collect(Collectors.toList()))
-                .forEach(System.out::println);
-    }
-
-    // @SuppressWarnings("null")
-    // @Bean
-    // ApplicationListener<ApplicationReadyEvent> userListener(CustomerRepository
-    // repository) {
-    // return event->repository
-    // .saveAll(Stream.of("Customer A", "Customer B", "Customer C").map(name->new
-    // Customer(name, "email@testemail.com", "Username", "Password", "Customer",
-    // "Address", "Payment")).collect(Collectors.toList()))
-    // .forEach(System.out::println);
-    // }
-
     @Bean
     ApplicationListener<ApplicationReadyEvent> testCustomerService() {
         return event -> {
