@@ -1,5 +1,7 @@
 package com.cafe.server.product;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -76,11 +78,11 @@ public abstract class Product {
         if (!(o instanceof Product)) {
             return false;
         }
-        return productId != null && productId.equals(((Product) o).productId);
+        return this.getProductId() != null && this.getProductId().equals(((Product) o).getProductId());
     }
 
     @Override
     public int hashCode() {
-        return 31;
+        return Objects.hash(this.getProductId());
     }
 }

@@ -1,14 +1,18 @@
 package com.cafe.server.cart;
 
-import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.cafe.server.product.Product;
+import com.cafe.server.cart.cartItem.CartItem;
 
 @Entity
 @Table(name = "carts")
@@ -16,34 +20,36 @@ public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
-    private HashMap<Long, Integer> productMap;
+    private Long cartId;
+
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+    private Set<CartItem> cartItems = new HashSet<CartItem>();
+
     private Double totalCartPrice;
 
     protected Cart() {
-        
+
     }
 
     public Cart(Long userId) {
-        this.userId = userId;
-        this.productMap = new HashMap<>();
+        this.cartId = userId;
         this.totalCartPrice = 0.0;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getCartId() {
+        return cartId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setCartId(Long cartId) {
+        this.cartId = cartId;
     }
 
-    public HashMap<Long, Integer> getProductMap() {
-        return productMap;
+    public Set<CartItem> getCartItems() {
+        return cartItems;
     }
 
-    public void setProductMap(HashMap<Long, Integer> productMap) {
-        this.productMap = productMap;
+    public void setCartItems(Set<CartItem> cart) {
+        this.cartItems = cart;
     }
 
     public Double getTotalCartPrice() {
@@ -54,30 +60,6 @@ public class Cart {
         this.totalCartPrice = totalCartPrice;
     }
 
-    public void addProductToCart(Product product) {
-        Long productId = product.getProductId();
-        Integer currentQuantity = this.productMap.get(productId);
-
-        if (currentQuantity == null) {
-            this.productMap.put(productId, 1);
-        } else {
-            this.productMap.put(productId, currentQuantity + 1);
-        }
-    }
-
-    public void removeProductFromCart(Product product) {
-        Long productId = product.getProductId();
-        Integer currentQuantity = this.productMap.get(productId);
-
-        if (currentQuantity > 1) {
-            this.productMap.put(productId, currentQuantity - 1);
-        } else if (currentQuantity == 1) {
-            this.productMap.remove(productId);
-        } else {
-            return;
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -86,12 +68,12 @@ public class Cart {
         if (!(o instanceof Cart)) {
             return false;
         }
-        return userId != null && userId.equals(((Cart) o).userId);
+        return cartId != null && cartId.equals(((Cart) o).cartId);
     }
 
     @Override
     public int hashCode() {
-        return 31;
+        return Objects.hash(cartId);
     }
 
 }

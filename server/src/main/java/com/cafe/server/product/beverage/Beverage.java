@@ -1,25 +1,42 @@
 package com.cafe.server.product.beverage;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapKeyColumn;
 
 import com.cafe.server.product.Product;
 
 @Entity
 public class Beverage extends Product {
 
-    private Map<String, Double> drinkSizeOptions; // S, M, L
-    private List<Integer> drinkSweetnessOptions; // 0, 50, 70, 100
-    private List<String> drinkTemperatureOptions; // Cold (No/Less/Regular/More Ice), Hot
-    private Map<String, Double> drinkAddonsOptions; // Pearls, Grass Jelly, Sago
+    @ElementCollection
+    @CollectionTable(name = "beverage_size_options", joinColumns = @JoinColumn(name = "beverage_id"))
+    @MapKeyColumn(name = "size")
+    @Column(name = "size_price")
+    private Map<String, Double> drinkSizeOptions;
 
-    private String chosenSizeOption;
-    private Integer chosenSweetnessOption;
-    private String chosenTemperatureOption;
-    private Map<String, Integer> chosenAddons;
+    @ElementCollection
+    @CollectionTable(name = "beverage_sweetness_options", joinColumns = @JoinColumn(name = "beverage_id"))
+    @Column(name = "sweetness")
+    private List<Integer> drinkSweetnessOptions;
+
+    @ElementCollection
+    @CollectionTable(name = "beverage_temperature_options", joinColumns = @JoinColumn(name = "beverage_id"))
+    @Column(name = "temperature")
+    private List<String> drinkTemperatureOptions;
+
+    @ElementCollection
+    @CollectionTable(name = "beverage_addons_options", joinColumns = @JoinColumn(name = "beverage_id"))
+    @MapKeyColumn(name = "addon")
+    @Column(name = "addon_price")
+    private Map<String, Double> drinkAddonsOptions;
 
     protected Beverage() {
 
@@ -67,38 +84,6 @@ public class Beverage extends Product {
         this.drinkAddonsOptions = drinkAddonsOptions;
     }
 
-    public String getChosenSizeOption() {
-        return chosenSizeOption;
-    }
-
-    public void setChosenSizeOption(String chosenSizeOption) {
-        this.chosenSizeOption = chosenSizeOption;
-    }
-
-    public Integer getChosenSweetnessOption() {
-        return chosenSweetnessOption;
-    }
-
-    public void setChosenSweetnessOption(Integer chosenSweetnessOption) {
-        this.chosenSweetnessOption = chosenSweetnessOption;
-    }
-
-    public String getChosenTemperatureOption() {
-        return chosenTemperatureOption;
-    }
-
-    public void setChosenTemperatureOption(String chosenTemperatureOption) {
-        this.chosenTemperatureOption = chosenTemperatureOption;
-    }
-
-    public Map<String, Integer> getChosenAddons() {
-        return chosenAddons;
-    }
-
-    public void setChosenAddons(Map<String, Integer> chosenAddons) {
-        this.chosenAddons = chosenAddons;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -108,12 +93,12 @@ public class Beverage extends Product {
             return false;
         }
         Beverage otherBeverage = (Beverage) o;
-        return getProductId() != null && getProductId().equals(otherBeverage.getProductId());
+        return this.getProductId() != null && this.getProductId().equals(otherBeverage.getProductId());
     }
 
     @Override
     public int hashCode() {
-        return 31;
+        return Objects.hash(this.getProductId());
     }
 
 }

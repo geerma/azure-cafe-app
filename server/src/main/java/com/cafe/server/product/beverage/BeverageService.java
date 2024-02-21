@@ -19,16 +19,4 @@ public class BeverageService {
         return beverageRepository.save(newBeverage);
     }
 
-    public void setSizeOption(Beverage beverage, String sizeOption) {
-        beverage.setChosenSizeOption(sizeOption);
-    }
-
-    public void setSweetnessOption(Beverage beverage, Integer sweetnessOption) {
-        beverage.setChosenSweetnessOption(sweetnessOption);
-    }
-
-    public void setTemperatureOption(Beverage beverage, String sweetnessOption) {
-        beverage.setChosenTemperatureOption(sweetnessOption);
-    }
-
 }
