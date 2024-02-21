@@ -1,10 +1,9 @@
 package com.cafe.server.cart;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.cafe.server.cart.cartItem.CartItem;
 import com.cafe.server.product.Product;
@@ -42,7 +41,7 @@ public class CartService {
      * @param userId
      * @return
      */
-    public Cart getCartByUserId(Long userId) {
+    public Cart getCartByUserId(@NonNull Long userId) {
         // Retrieve the cart associated with the given user ID
         Optional<Cart> optionalCart = cartRepository.findById(userId);
         return optionalCart.orElse(null); // Returns the cart if present, otherwise null
@@ -54,7 +53,7 @@ public class CartService {
      * @param productId
      */
     @Transactional
-    public void addItemToCart(Long userId, Long productId) {
+    public void addItemToCart(@NonNull Long userId, @NonNull Long productId) {
         try {
             Cart cart = getCartByUserId(userId);
 
@@ -109,7 +108,7 @@ public class CartService {
         // }
     }
 
-    public Double calculateCartCostByUserId(Long userId) throws Exception {
+    public Double calculateCartCostByUserId(@NonNull Long userId) throws Exception {
         Double totalCostTemp = 0.0;
 
         Cart userCart = getCartByUserId(userId);
