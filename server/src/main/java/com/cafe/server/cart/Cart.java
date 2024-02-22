@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.cafe.server.cart.cartItem.CartItem;
+import com.cafe.server.cart.cartitem.CartItem;
 
 @Entity
 @Table(name = "carts")

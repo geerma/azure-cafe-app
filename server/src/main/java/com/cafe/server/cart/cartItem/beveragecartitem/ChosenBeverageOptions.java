@@ -1,16 +1,25 @@
-package com.cafe.server.cart.cartItem;
+package com.cafe.server.cart.cartitem.beveragecartitem;
 
 import java.util.Map;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapKeyColumn;
+import javax.persistence.Table;
 
-public class BeverageOptions {
+@Entity
+@Table(name = "chosen_beverage_options")
+public class ChosenBeverageOptions {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long beverageId;
+    private Long beverageOptionId;
 
     public String chosenDrinkSize = "S"; // Size 'S', 'M', 'L'
 
@@ -18,28 +27,35 @@ public class BeverageOptions {
 
     public String chosenDrinkTemperature = "Hot"; // Temperature options: Cold, Hot
 
-    public Map<String, Integer> chosenDrinkOptions = Map.of(
+    @ElementCollection
+    @CollectionTable(name = "chosen_beverage_addons", joinColumns = @JoinColumn(name = "cart_item_id"))
+    @MapKeyColumn(name = "addon")
+    @Column(name = "addon_quantity")
+    public Map<String, Integer> chosenDrinkAddons = Map.of(
             "Pearls", 0, // Pearls addon costs $1.5
             "Grass Jelly", 0, // Grass Jelly addon costs $1.5
             "Sago", 1 // Sago addon costs $1.5
     );
 
-    public BeverageOptions(Long cartItemId, String chosenDrinkSize, Integer chosenDrinkSweetness,
+    protected ChosenBeverageOptions() {
+
+    }
+
+    public ChosenBeverageOptions(String chosenDrinkSize, Integer chosenDrinkSweetness,
             String chosenDrinkTemperature,
-            Map<String, Integer> chosenDrinkOptions) {
-        this.beverageId = cartItemId;
+            Map<String, Integer> chosenDrinkAddons) {
         this.chosenDrinkSize = chosenDrinkSize;
         this.chosenDrinkSweetness = chosenDrinkSweetness;
         this.chosenDrinkTemperature = chosenDrinkTemperature;
-        this.chosenDrinkOptions = chosenDrinkOptions;
+        this.chosenDrinkAddons = chosenDrinkAddons;
     }
 
-    public Long getBeverageId() {
-        return beverageId;
+    public Long getBeverageOptionId() {
+        return beverageOptionId;
     }
 
-    public void setBeverageId(Long beverageId) {
-        this.beverageId = beverageId;
+    public void setBeverageOptionId(Long beverageOptionId) {
+        this.beverageOptionId = beverageOptionId;
     }
 
     public String getChosenDrinkSize() {
@@ -66,12 +82,12 @@ public class BeverageOptions {
         this.chosenDrinkTemperature = chosenDrinkTemperature;
     }
 
-    public Map<String, Integer> getChosenDrinkOptions() {
-        return chosenDrinkOptions;
+    public Map<String, Integer> getChosenDrinkAddons() {
+        return chosenDrinkAddons;
     }
 
-    public void setChosenDrinkOptions(Map<String, Integer> chosenDrinkOptions) {
-        this.chosenDrinkOptions = chosenDrinkOptions;
+    public void setChosenDrinkAddons(Map<String, Integer> chosenDrinkAddons) {
+        this.chosenDrinkAddons = chosenDrinkAddons;
     }
 
 }

@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 
 import com.cafe.server.cart.CartService;
+import com.cafe.server.cart.cartitem.beveragecartitem.BeverageRequest;
 import com.cafe.server.product.beverage.BeverageService;
 import com.cafe.server.user.customer.CustomerService;
 
@@ -69,9 +70,24 @@ public class CafeApplication {
     @Bean
     ApplicationListener<ApplicationReadyEvent> testCartService() {
         return event -> {
-            cartService.addItemToCart(3L, 1L);
-            cartService.addItemToCart(3L, 1L);
-            cartService.addItemToCart(1L, 1L);
+
+            String chosenDrinkSize = "S"; // Size 'S', 'M', 'L'
+
+            Integer chosenDrinkSweetness = 100; // Sweetness options: 0%, 50%, 70%, 100%
+        
+            String chosenDrinkTemperature = "Hot"; // Temperature options: Cold, Hot
+        
+            Map<String, Integer> chosenDrinkAddons = Map.of(
+                    "Pearls", 0, // Pearls addon costs $1.5
+                    "Grass Jelly", 0, // Grass Jelly addon costs $1.5
+                    "Sago", 1 // Sago addon costs $1.5
+            );
+
+            BeverageRequest beverageRequest = new BeverageRequest(chosenDrinkSize, chosenDrinkSweetness, chosenDrinkTemperature, chosenDrinkAddons);
+
+            cartService.addBeverageToCart(3L, 1L, beverageRequest);
+            cartService.addBeverageToCart(3L, 1L, beverageRequest);
+            cartService.addBeverageToCart(1L, 1L, beverageRequest);
         };
     }
 

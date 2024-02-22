@@ -1,4 +1,4 @@
-package com.cafe.server.cart.cartItem;
+package com.cafe.server.cart.cartitem;
 
 import java.util.Objects;
 
@@ -15,13 +15,14 @@ import com.cafe.server.product.Product;
 
 @Entity
 @Table(name = "cart_items")
-public class CartItem {
+public abstract class CartItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cartItemId;
 
     @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToOne

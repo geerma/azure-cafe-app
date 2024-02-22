@@ -1,4 +1,4 @@
-package com.cafe.server.cart.cartItem;
+package com.cafe.server.cart.cartitem;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
