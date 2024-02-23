@@ -43,8 +43,8 @@ public class CafeApplication {
 
     public Map<String, Double> drinkAddonsOptions = Map.of(
             "Pearls", 1.5, // Pearls addon costs $1.5
-            "Grass Jelly", 2.0, // Grass Jelly addon costs $1.5
-            "Sago", 1.0 // Sago addon costs $1.5
+            "Grass Jelly", 2.0, // Grass Jelly addon costs $2.0
+            "Sago", 1.0 // Sago addon costs $1.0
     );
 
     @Bean
@@ -71,7 +71,7 @@ public class CafeApplication {
     ApplicationListener<ApplicationReadyEvent> testCartService() {
         return event -> {
 
-            String chosenDrinkSize = "S"; // Size 'S', 'M', 'L'
+            String chosenDrinkSize = "M"; // Size options: 'S' = +$0, 'M' = +$1, 'L' = +$2
 
             Integer chosenDrinkSweetness = 100; // Sweetness options: 0%, 50%, 70%, 100%
         
@@ -79,8 +79,8 @@ public class CafeApplication {
         
             Map<String, Integer> chosenDrinkAddons = Map.of(
                     "Pearls", 0, // Pearls addon costs $1.5
-                    "Grass Jelly", 0, // Grass Jelly addon costs $1.5
-                    "Sago", 1 // Sago addon costs $1.5
+                    "Grass Jelly", 2, // Grass Jelly addon costs $2.0
+                    "Sago", 1 // Sago addon costs $1.0
             );
 
             BeverageRequest beverageRequest = new BeverageRequest(chosenDrinkSize, chosenDrinkSweetness, chosenDrinkTemperature, chosenDrinkAddons);

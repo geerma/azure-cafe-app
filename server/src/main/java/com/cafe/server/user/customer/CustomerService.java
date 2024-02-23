@@ -18,9 +18,6 @@ public class CustomerService {
     public Customer createCustomer(String userName, String userEmail, String userUsername, String userPassword) {
         Customer newCustomer = new Customer(userName, userEmail, userUsername, userPassword, "Customer", null, null);
 
-        // Create cart for the new customer, associated with the same userId
-        cartService.createCart(newCustomer.getUserId());
-
         return customerRepository.save(newCustomer);
     }
 }

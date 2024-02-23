@@ -27,21 +27,40 @@ public class BeverageCartItemService {
      * @return
      */
     public Double calculateBeverageCartItemPrice(@NonNull Long cartItemId) {
-        System.out.println("\ncalculateBeverageCartItemPrice");
-        BeverageCartItem beverageCartItem = beverageCartItemRepository.findById(cartItemId)
-                .orElseThrow(() -> new RuntimeException("BeverageCartItem not found"));
-
-        System.out.println("\nBeverageCartItem Found");
-        ChosenBeverageOptions beverageOptions = beverageCartItem.getBeverageOptions();
-
-        String chosenDrinkSize = beverageOptions.getChosenDrinkSize();
-        Map<String, Integer> chosenDrinkAddons = beverageOptions.getChosenDrinkAddons();
-
+        System.out.println("\n\n\ncalculateBeverageCartItemPrice");
         try {
+            BeverageCartItem beverageCartItem = beverageCartItemRepository.findById(cartItemId)
+                    .orElseThrow(() -> new RuntimeException("BeverageCartItem not found"));
+
+            ChosenBeverageOptions beverageOptions = beverageCartItem.getBeverageOptions();
+
+            String chosenDrinkSize = beverageOptions.getChosenDrinkSize();
+            Map<String, Integer> chosenDrinkAddons = beverageOptions.getChosenDrinkAddons();
+
             System.out.println("\nFetching Beverage");
             Beverage beverage = beverageService.getBeverageByProductId(beverageCartItem.getProduct().getProductId());
-            System.out.println("\n\n BEVERAGE FOUND " + beverage.getProductName());
-            return beverage.getProductCost();
+
+            // Initialize totalBeveragePrice with the base price of the beverage
+            Double totalBeveragePrice = beverage.getProductCost();
+
+            // Get information on the of the size and its associated price, add to
+            // totalBeveragePrice
+            Double chosenDrinkSizePrice = beverage.getDrinkSizeOptions().get(chosenDrinkSize);
+            totalBeveragePrice += chosenDrinkSizePrice;
+
+            // Get information on the addons, refers to beverage addon price list
+            Map<String, Double> drinkAddonsMap = beverage.getDrinkAddonsOptions();
+
+            for (String addon : drinkAddonsMap.keySet()) {
+                Integer quantity = chosenDrinkAddons.get(addon);
+                if (quantity != null && quantity >= 1) {
+                    Double price = drinkAddonsMap.get(addon);
+
+                    totalBeveragePrice += quantity * price;
+                }
+            }
+
+            return totalBeveragePrice;
         } catch (Exception e) {
             e.printStackTrace();
         }
