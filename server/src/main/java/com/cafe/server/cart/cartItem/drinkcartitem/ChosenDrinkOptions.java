@@ -19,7 +19,7 @@ public class ChosenDrinkOptions {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long drinkOptionId;
+    private Long chosenDrinkOptionId;
 
     public String chosenDrinkSize = "M"; // Size 'S', 'M', 'L'
 
@@ -28,7 +28,7 @@ public class ChosenDrinkOptions {
     public String chosenDrinkTemperature = "Hot"; // Temperature options: Cold, Hot
 
     @ElementCollection
-    @CollectionTable(name = "chosen_drink_addons", joinColumns = @JoinColumn(name = "drink_option_id"))
+    @CollectionTable(name = "chosen_drink_addons", joinColumns = @JoinColumn(name = "chosen_drink_option_id"))
     @MapKeyColumn(name = "addon")
     @Column(name = "addon_quantity")
     public Map<String, Integer> chosenDrinkAddons = Map.of(
@@ -50,12 +50,12 @@ public class ChosenDrinkOptions {
         this.chosenDrinkAddons = chosenDrinkAddons;
     }
 
-    public Long getDrinkOptionId() {
-        return drinkOptionId;
+    public Long getChosenDrinkOptionId() {
+        return chosenDrinkOptionId;
     }
 
-    public void setDrinkOptionId(Long drinkOptionId) {
-        this.drinkOptionId = drinkOptionId;
+    public void setChosenDrinkOptionId(Long chosenDrinkOptionId) {
+        this.chosenDrinkOptionId = chosenDrinkOptionId;
     }
 
     public String getChosenDrinkSize() {

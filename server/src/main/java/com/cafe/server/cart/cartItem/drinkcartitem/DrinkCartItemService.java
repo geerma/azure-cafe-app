@@ -31,7 +31,7 @@ public class DrinkCartItemService {
             DrinkCartItem drinkCartItem = drinkCartItemRepository.findById(cartItemId)
                     .orElseThrow(() -> new RuntimeException("DrinkCartItem not found"));
 
-            ChosenDrinkOptions drinkOptions = drinkCartItem.getDrinkOptions();
+            ChosenDrinkOptions drinkOptions = drinkCartItem.getChosenDrinkOptions();
 
             String chosenDrinkSize = drinkOptions.getChosenDrinkSize();
             Map<String, Integer> chosenDrinkAddons = drinkOptions.getChosenDrinkAddons();

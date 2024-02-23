@@ -1,6 +1,5 @@
 package com.cafe.server.order;
 
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -74,7 +73,7 @@ public class Order {
     public Double calculateOrderCost() {
         Double totalCostTemp = 0.0;
         for (OrderItem orderItem : orderItemList) {
-            totalCostTemp += orderItem.getOrderItemPrice();
+            totalCostTemp += (orderItem.getQuantity() * orderItem.getOrderItemPrice());
         }
         return totalCostTemp;
     }

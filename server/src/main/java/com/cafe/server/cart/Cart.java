@@ -23,7 +23,7 @@ public class Cart {
     private Long cartId;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-    private Set<CartItem> cartItems = new HashSet<CartItem>();
+    private Set<CartItem> cartItems;
 
     private Double totalCartPrice;
 
@@ -33,7 +33,14 @@ public class Cart {
 
     public Cart(Long userId) {
         this.cartId = userId;
+        this.cartItems = new HashSet<CartItem>();
         this.totalCartPrice = 0.0;
+    }
+
+    public Cart resetCart() {
+        setCartItems(new HashSet<CartItem>());
+        setTotalCartPrice(0.0);
+        return this;
     }
 
     public Long getCartId() {

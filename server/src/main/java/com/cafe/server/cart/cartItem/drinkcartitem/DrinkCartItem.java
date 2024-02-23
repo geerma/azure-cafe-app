@@ -14,24 +14,24 @@ public class DrinkCartItem extends CartItem {
 
     // https://www.baeldung.com/jpa-cascade-types
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "drink_option_id")
-    private ChosenDrinkOptions drinkOptions;
+    @JoinColumn(name = "chosen_drink_option_id")
+    private ChosenDrinkOptions chosenDrinkOptions;
 
     protected DrinkCartItem() {
 
     }
 
-    public DrinkCartItem(Product product, Cart cart, Integer quantity, ChosenDrinkOptions drinkOptions) {
+    public DrinkCartItem(Product product, Cart cart, Integer quantity, ChosenDrinkOptions chosenDrinkOptions) {
         super(product, cart, quantity);
-        this.drinkOptions = drinkOptions;
+        this.chosenDrinkOptions = chosenDrinkOptions;
     }
 
-    public ChosenDrinkOptions getDrinkOptions() {
-        return drinkOptions;
+    public ChosenDrinkOptions getChosenDrinkOptions() {
+        return chosenDrinkOptions;
     }
 
-    public void setDrinkOptions(ChosenDrinkOptions drinkOptions) {
-        this.drinkOptions = drinkOptions;
+    public void setChosenDrinkOptions(ChosenDrinkOptions chosenDrinkOptions) {
+        this.chosenDrinkOptions = chosenDrinkOptions;
     }
 
 }

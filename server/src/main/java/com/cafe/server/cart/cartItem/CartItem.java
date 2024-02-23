@@ -31,7 +31,7 @@ public class CartItem implements CartItemInterface {
 
     private Integer quantity;
 
-    private Double cartItemPrice = 999.99;
+    private Double cartItemPrice;
 
     protected CartItem() {
         
