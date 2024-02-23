@@ -14,6 +14,8 @@ import com.cafe.server.cart.CartService;
 import com.cafe.server.cart.cartitem.drinkcartitem.DrinkRequest;
 import com.cafe.server.order.OrderService;
 import com.cafe.server.product.drink.DrinkService;
+import com.cafe.server.product.food.FoodService;
+import com.cafe.server.product.merchandise.MerchandiseService;
 import com.cafe.server.user.customer.CustomerService;
 
 @SpringBootApplication
@@ -24,6 +26,12 @@ public class CafeApplication {
 
     @Autowired
     private DrinkService drinkService;
+
+    @Autowired
+    private FoodService foodService;
+
+    @Autowired
+    private MerchandiseService merchandiseService;
 
     @Autowired
     private CartService cartService;
@@ -54,8 +62,13 @@ public class CafeApplication {
     @Bean
     ApplicationListener<ApplicationReadyEvent> testDrinkService() {
         return event -> {
-            drinkService.createDrink("Drink A", "Drink Description", "Drink", 5.0, drinkSizeOptions,
+            drinkService.createDrink("Matcha Milk Tea", "Delicious matcha milk tea", "Drink", 5.0, drinkSizeOptions,
                     drinkSweetnessOptions, drinkTemperatureOptions, drinkAddonsOptions);
+                    
+            foodService.createFood("Strawberry Cake", "Tasty cake with fresh strawberries", "Food", 8.0);
+
+            merchandiseService.createMerchandise("Pink Tulip Bouquet",
+                    "Beautiful pink tulips wrapped in a bouquet. A perfect gift for a loved one!", "Merchandise", 40.0);
         };
     }
 

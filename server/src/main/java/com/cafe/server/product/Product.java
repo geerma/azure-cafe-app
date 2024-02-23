@@ -18,6 +18,7 @@ public abstract class Product {
     private String productDescription;
     private String productCategory;
     private Double productCost;
+    private String productImageURL;
 
     protected Product() {
 
@@ -28,6 +29,16 @@ public abstract class Product {
         this.productDescription = productDescription;
         this.productCategory = productCategory;
         this.productCost = productCost;
+        this.productImageURL = null;
+    }
+
+    public Product(String productName, String productDescription, String productCategory, Double productCost,
+            String productImageURL) {
+        this.productName = productName;
+        this.productDescription = productDescription;
+        this.productCategory = productCategory;
+        this.productCost = productCost;
+        this.productImageURL = productImageURL;
     }
 
     public Long getProductId() {
@@ -70,6 +81,14 @@ public abstract class Product {
         this.productCost = productCost;
     }
 
+    public String getProductImageURL() {
+        return productImageURL;
+    }
+
+    public void setProductImageURL(String productImageURL) {
+        this.productImageURL = productImageURL;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -85,4 +104,5 @@ public abstract class Product {
     public int hashCode() {
         return Objects.hash(this.getProductId());
     }
+
 }
