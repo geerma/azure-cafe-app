@@ -19,12 +19,12 @@ public class DrinkService {
     public Drink getDrinkByProductId(@NonNull Long productId) throws Exception {
         Optional<Drink> productOptional = drinkRepository.findById(productId);
 
-        // Check if product is present in the optional
+        // Check if Drink is present in the optional
         if (productOptional.isPresent()) {
             Drink product = productOptional.get();
             return product;
         } else {
-            throw new Exception("Beverage with ID " + productId + " not found");
+            throw new Exception("Drink with ID " + productId + " not found");
         }
     }
 
