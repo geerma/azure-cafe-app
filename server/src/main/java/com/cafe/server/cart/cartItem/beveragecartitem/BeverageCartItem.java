@@ -16,8 +16,6 @@ public class BeverageCartItem extends CartItem {
     @OneToOne (cascade = CascadeType.PERSIST)
     @JoinColumn(name = "beverage_option_id")
     private ChosenBeverageOptions beverageOptions;
-    
-    private Double beverageCartItemPrice;
 
     protected BeverageCartItem() {
 
@@ -26,7 +24,6 @@ public class BeverageCartItem extends CartItem {
     public BeverageCartItem(Product product, Cart cart, Integer quantity, ChosenBeverageOptions beverageOptions) {
         super(product, cart, quantity);
         this.beverageOptions = beverageOptions;
-        this.beverageCartItemPrice = 0.1;
     }
 
     public ChosenBeverageOptions getBeverageOptions() {
@@ -35,14 +32,6 @@ public class BeverageCartItem extends CartItem {
 
     public void setBeverageOptions(ChosenBeverageOptions beverageOptions) {
         this.beverageOptions = beverageOptions;
-    }
-
-    public Double getBeverageCartItemPrice() {
-        return beverageCartItemPrice;
-    }
-
-    public void setBeverageCartItemPrice(Double beverageCartItemPrice) {
-        this.beverageCartItemPrice = beverageCartItemPrice;
     }
 
 }

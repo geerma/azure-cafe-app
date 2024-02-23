@@ -56,7 +56,7 @@ public class BeverageCartItemService {
                 if (quantity != null && quantity >= 1) {
                     Double price = drinkAddonsMap.get(addon);
 
-                    totalBeveragePrice += quantity * price;
+                    totalBeveragePrice += (quantity * price);
                 }
             }
 

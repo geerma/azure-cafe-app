@@ -108,7 +108,7 @@ public class CartService {
 
                 Double newCartItemPrice = beverageCartItemService
                         .calculateBeverageCartItemPrice(newCartItem.getCartItemId());
-                newCartItem.setBeverageCartItemPrice(newCartItemPrice);
+                newCartItem.setCartItemPrice(newCartItemPrice);
                 cart.getCartItems().add(newCartItem);
             }
 
@@ -122,7 +122,7 @@ public class CartService {
     }
 
     /**
-     * Create a new cartItem and add it to the cart associated with the userId
+     * Create a new generic cartItem and add it to the cart associated with the userId
      * 
      * @param userId
      * @param productId
@@ -147,9 +147,8 @@ public class CartService {
             if (existingItem != null) {
                 existingItem.setQuantity(existingItem.getQuantity() + 1);
             } else {
-                // Create a new CartItem and add it to the cart
-                // CartItem newCartItem = new CartItem(product, cart, 1);
-                // cart.getCartItems().add(newCartItem);
+                CartItem newCartItem = new CartItem(product, cart, 1);
+                cart.getCartItems().add(newCartItem);
             }
 
             // Calculates the total price of all items in the cart and sets the cart value
@@ -190,10 +189,10 @@ public class CartService {
         Set<CartItem> userCartItems = userCart.getCartItems();
 
         for (CartItem cartItem : userCartItems) {
-            Double productPrice = cartItem.getProduct().getProductCost();
             Integer cartQuantity = cartItem.getQuantity();
+            Double cartItemPrice = cartItem.getCartItemPrice();
 
-            totalCostTemp += (productPrice * cartQuantity);
+            totalCostTemp += (cartQuantity * cartItemPrice);
         }
         return totalCostTemp;
     }

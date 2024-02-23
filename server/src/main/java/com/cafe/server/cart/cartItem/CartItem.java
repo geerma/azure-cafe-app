@@ -15,7 +15,7 @@ import com.cafe.server.product.Product;
 
 @Entity
 @Table(name = "cart_items")
-public abstract class CartItem {
+public class CartItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +30,8 @@ public abstract class CartItem {
     private Cart cart;
 
     private Integer quantity;
+
+    private Double cartItemPrice;
 
     protected CartItem() {
         
@@ -71,6 +73,14 @@ public abstract class CartItem {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Double getCartItemPrice() {
+        return cartItemPrice;
+    }
+
+    public void setCartItemPrice(Double cartItemPrice) {
+        this.cartItemPrice = cartItemPrice;
     }
 
     @Override
