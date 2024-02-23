@@ -15,7 +15,7 @@ import com.cafe.server.product.Product;
 
 @Entity
 @Table(name = "cart_items")
-public class CartItem {
+public class CartItem implements CartItemInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,7 @@ public class CartItem {
 
     private Integer quantity;
 
-    private Double cartItemPrice;
+    private Double cartItemPrice = 999.99;
 
     protected CartItem() {
         

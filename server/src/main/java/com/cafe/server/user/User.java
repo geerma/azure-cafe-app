@@ -1,5 +1,7 @@
 package com.cafe.server.user;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -92,7 +94,7 @@ public abstract class User {
 
     @Override
     public int hashCode() {
-        return 31;
+        return Objects.hash(this.getUserId());
     }
 
 }

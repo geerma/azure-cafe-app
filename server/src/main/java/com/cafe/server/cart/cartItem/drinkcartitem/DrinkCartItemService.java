@@ -27,7 +27,6 @@ public class DrinkCartItemService {
      * @return
      */
     public Double calculateDrinkCartItemPrice(@NonNull Long cartItemId) {
-        System.out.println("\n\n\ncalculateDrinkCartItemPrice");
         try {
             DrinkCartItem drinkCartItem = drinkCartItemRepository.findById(cartItemId)
                     .orElseThrow(() -> new RuntimeException("DrinkCartItem not found"));
@@ -37,13 +36,12 @@ public class DrinkCartItemService {
             String chosenDrinkSize = drinkOptions.getChosenDrinkSize();
             Map<String, Integer> chosenDrinkAddons = drinkOptions.getChosenDrinkAddons();
 
-            System.out.println("\nFetching Drink");
             Drink drink = drinkService.getDrinkByProductId(drinkCartItem.getProduct().getProductId());
 
             // Initialize totalDrinkPrice with the base price of the drink
             Double totalDrinkPrice = drink.getProductCost();
 
-            // Get information on the of the size and its associated price, add to
+            // Get information on the drink size and its associated price, add to
             // totalDrinkPrice
             Double chosenDrinkSizePrice = drink.getDrinkSizeOptions().get(chosenDrinkSize);
             totalDrinkPrice += chosenDrinkSizePrice;

@@ -1,6 +1,7 @@
 package com.cafe.server.user.customer;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -83,6 +84,7 @@ public class Customer extends User {
 
     @Override
     public int hashCode() {
-        return 31;
+        return Objects.hash(this.getUserId());
     }
+
 }

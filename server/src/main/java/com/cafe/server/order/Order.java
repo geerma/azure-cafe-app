@@ -1,32 +1,41 @@
 package com.cafe.server.order;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.cafe.server.product.Product;
+import com.cafe.server.order.orderitem.OrderItem;
 
 @Entity
 @Table(name = "orders")
-public abstract class Order {
+public class Order {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
+
     private Long userId;
-    private ArrayList<Product> productList;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private Set<OrderItem> orderItemList;
+
     private Double totalOrderCost;
 
     protected Order() {
 
     }
 
-    public Order(Long userId, ArrayList<Product> productList, Double totalOrderCost) {
+    public Order(Long userId, Set<OrderItem> orderItemList, Double totalOrderCost) {
         this.userId = userId;
-        this.productList = productList;
+        this.orderItemList = orderItemList;
         this.totalOrderCost = totalOrderCost;
     }
 
@@ -46,12 +55,12 @@ public abstract class Order {
         this.userId = userId;
     }
 
-    public ArrayList<Product> getProductList() {
-        return productList;
+    public Set<OrderItem> getOrderItemList() {
+        return orderItemList;
     }
 
-    public void setProductList(ArrayList<Product> productList) {
-        this.productList = productList;
+    public void setOrderItemList(Set<OrderItem> orderItemList) {
+        this.orderItemList = orderItemList;
     }
 
     public Double getTotalOrderCost() {
@@ -64,8 +73,8 @@ public abstract class Order {
 
     public Double calculateOrderCost() {
         Double totalCostTemp = 0.0;
-        for (Product product : productList) {
-            totalCostTemp += product.getProductCost();
+        for (OrderItem orderItem : orderItemList) {
+            totalCostTemp += orderItem.getOrderItemPrice();
         }
         return totalCostTemp;
     }
@@ -83,7 +92,7 @@ public abstract class Order {
 
     @Override
     public int hashCode() {
-        return 31;
+        return Objects.hash(this.getOrderId());
     }
 
 }

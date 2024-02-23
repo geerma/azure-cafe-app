@@ -1,5 +1,7 @@
 package com.cafe.server.user.admin;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 
 import com.cafe.server.user.User;
@@ -11,8 +13,8 @@ public class Admin extends User {
         
     }
 
-    public Admin(String userName, String userUsername, String userPassword, String userRole, String billingAddress,
-            String paymentMethod) {
+    public Admin(String userName, String userEmail, String userUsername, String userPassword, String userRole) {
+        super(userName, userEmail, userUsername, userPassword, userRole);
     }
 
     @Override
@@ -29,6 +31,7 @@ public class Admin extends User {
 
     @Override
     public int hashCode() {
-        return 31;
+        return Objects.hash(this.getUserId());
     }
+
 }
