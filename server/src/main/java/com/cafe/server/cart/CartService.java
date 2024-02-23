@@ -93,13 +93,8 @@ public class CartService {
             if (existingItem != null) {
                 existingItem.setQuantity(existingItem.getQuantity() + 1);
             } else {
-                String chosenDrinkSize = drinkRequest.getChosenDrinkSize();
-                Integer chosenDrinkSweetness = drinkRequest.getChosenDrinkSweetness();
-                String chosenDrinkTemperature = drinkRequest.getChosenDrinkTemperature();
-                Map<String, Integer> chosenDrinkAddons = drinkRequest.getChosenDrinkAddons();
-
-                ChosenDrinkOptions drinkOptions = new ChosenDrinkOptions(chosenDrinkSize, chosenDrinkSweetness,
-                        chosenDrinkTemperature, chosenDrinkAddons);
+                // Create drinkOptions from drinkRequest
+                ChosenDrinkOptions drinkOptions = createDrinkOptions(drinkRequest);
 
                 // Create a new DrinkCartItem and add it to the cart
                 DrinkCartItem newCartItem = new DrinkCartItem(product, cart, 1, drinkOptions);
@@ -112,17 +107,30 @@ public class CartService {
                 cart.getCartItems().add(newCartItem);
             }
 
-            cartRepository.save(cart);
-
             // Calculates the total price of all items in the cart and sets the cart value
             cart.setTotalCartPrice(calculateCartCostByUserId(userId));
+
+            cartRepository.save(cart);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    private ChosenDrinkOptions createDrinkOptions(DrinkRequest drinkRequest) {
+        String chosenDrinkSize = drinkRequest.getChosenDrinkSize();
+        Integer chosenDrinkSweetness = drinkRequest.getChosenDrinkSweetness();
+        String chosenDrinkTemperature = drinkRequest.getChosenDrinkTemperature();
+        Map<String, Integer> chosenDrinkAddons = drinkRequest.getChosenDrinkAddons();
+
+        ChosenDrinkOptions drinkOptions = new ChosenDrinkOptions(chosenDrinkSize, chosenDrinkSweetness,
+                chosenDrinkTemperature, chosenDrinkAddons);
+
+        return drinkOptions;
+    }
+
     /**
-     * Create a new generic cartItem and add it to the cart associated with the userId
+     * Create a new generic cartItem and add it to the cart associated with the
+     * userId
      * 
      * @param userId
      * @param productId
@@ -153,32 +161,55 @@ public class CartService {
 
             // Calculates the total price of all items in the cart and sets the cart value
             cart.setTotalCartPrice(calculateCartCostByUserId(userId));
+
+            cartRepository.save(cart);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void removeItemFromCart(Long userId, Long productId) {
-        // // Check if the product is already in the cart
-        // CartItem itemToRemove = null;
-        // for (CartItem item : cartItems) {
-        // if (item.getProduct().equals(product)) {
-        // itemToRemove = item;
-        // break;
-        // }
-        // }
+    /**
+     * Decrease the quantity of the product in the user's cart
+     * 
+     * @param userId
+     * @param productId
+     */
+    @Transactional
+    public void decreaseQuantityFromCart(Long userId, Long productId) {
+        try {
+            // Check if the product is already in the cart
+            Cart cart = getCartByUserId(userId);
+            Set<CartItem> cartItems = cart.getCartItems();
 
-        // if (itemToRemove != null) {
-        // // If the CartItem exists, decrease the quantity
-        // int newQuantity = itemToRemove.getQuantity() - 1;
-        // if (newQuantity <= 0) {
-        // // If the quantity becomes zero or less, remove the item from the cart
-        // cartItems.remove(itemToRemove);
-        // } else {
-        // // Otherwise, update the quantity
-        // itemToRemove.setQuantity(newQuantity);
-        // }
-        // }
+            CartItem itemToRemove = null;
+            for (CartItem item : cartItems) {
+                if (item.getProduct().getProductId().equals(productId)) {
+                    itemToRemove = item;
+                    break;
+                }
+            }
+
+            if (itemToRemove != null) {
+                // If the CartItem exists, decrease the quantity
+                Integer newQuantity = itemToRemove.getQuantity() - 1;
+                if (newQuantity <= 0) {
+                    // If the quantity becomes zero or less, remove the item from the cart
+                    cartItems.remove(itemToRemove);
+                    cartItemRepository.delete(itemToRemove);
+                } else {
+                    // Otherwise, update the quantity
+                    itemToRemove.setQuantity(newQuantity);
+                    cartItemRepository.save(itemToRemove);
+                }
+            }
+
+            // Calculates the total price of all items in the cart and sets the cart value
+            cart.setTotalCartPrice(calculateCartCostByUserId(userId));
+
+            cartRepository.save(cart);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public Double calculateCartCostByUserId(@NonNull Long userId) throws Exception {

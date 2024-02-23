@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.cafe.server.cart.CartService;
 import com.cafe.server.cart.cartitem.drinkcartitem.DrinkRequest;
+import com.cafe.server.order.OrderService;
 import com.cafe.server.product.drink.DrinkService;
 import com.cafe.server.user.customer.CustomerService;
 
@@ -26,6 +27,9 @@ public class CafeApplication {
 
     @Autowired
     private CartService cartService;
+
+    @Autowired
+    private OrderService orderService;
 
     public static void main(String[] args) {
         SpringApplication.run(CafeApplication.class, args);
@@ -74,22 +78,32 @@ public class CafeApplication {
             String chosenDrinkSize = "M"; // Size options: 'S' = +$0, 'M' = +$1, 'L' = +$2
 
             Integer chosenDrinkSweetness = 100; // Sweetness options: 0%, 50%, 70%, 100%
-        
+
             String chosenDrinkTemperature = "Hot"; // Temperature options: Cold, Hot
-        
+
             Map<String, Integer> chosenDrinkAddons = Map.of(
                     "Pearls", 0, // Pearls addon costs $1.5
                     "Grass Jelly", 2, // Grass Jelly addon costs $2.0
                     "Sago", 1 // Sago addon costs $1.0
             );
 
-            DrinkRequest drinkRequest = new DrinkRequest(chosenDrinkSize, chosenDrinkSweetness, chosenDrinkTemperature, chosenDrinkAddons);
+            DrinkRequest drinkRequest = new DrinkRequest(chosenDrinkSize, chosenDrinkSweetness, chosenDrinkTemperature,
+                    chosenDrinkAddons);
 
             cartService.addDrinkToCart(3L, 1L, drinkRequest);
             cartService.addDrinkToCart(3L, 1L, drinkRequest);
             cartService.addDrinkToCart(1L, 1L, drinkRequest);
+
+            cartService.decreaseQuantityFromCart(1L, 1L);
         };
     }
 
+    @Bean
+    ApplicationListener<ApplicationReadyEvent> testOrderService() {
+        return event -> {
+            orderService.convertCartToOrder(3L);
+            System.out.println("Converted Cart to Order");
+        };
+    }
 
 }

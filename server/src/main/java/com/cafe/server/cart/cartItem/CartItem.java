@@ -15,7 +15,7 @@ import com.cafe.server.product.Product;
 
 @Entity
 @Table(name = "cart_items")
-public class CartItem {
+public class CartItem implements CartItemInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
