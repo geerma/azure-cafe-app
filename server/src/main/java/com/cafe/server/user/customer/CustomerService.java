@@ -2,16 +2,12 @@ package com.cafe.server.user.customer;
 
 import org.springframework.stereotype.Service;
 
-import com.cafe.server.cart.CartService;
-
 @Service
 public class CustomerService {
 
-    private final CartService cartService;
     private final CustomerRepository customerRepository;
 
-    public CustomerService(CustomerRepository customerRepository, CartService cartService) {
-        this.cartService = cartService;
+    public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 

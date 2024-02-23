@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
-import com.cafe.server.cart.cartitem.beveragecartitem.BeverageRequest;
+import com.cafe.server.cart.cartitem.drinkcartitem.DrinkRequest;
 
 @RestController
 @RequestMapping("/carts")
@@ -52,14 +52,14 @@ public class CartController {
      * 
      * @param userId
      * @param productId
-     * @param beverageRequest
+     * @param drinkRequest
      */
-    @PostMapping("/addBeverage/{userId}/{productId}")
+    @PostMapping("/addDrink/{userId}/{productId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addBeverageToCart(@NonNull @PathVariable Long userId, @NonNull @PathVariable Long productId,
-            @NonNull @RequestBody BeverageRequest beverageRequest) {
-        cartService.addBeverageToCart(userId, productId, beverageRequest);
-        ResponseEntity.ok("Beverage with ID " + productId + " has been added to the cart.");
+    public void addDrinkToCart(@NonNull @PathVariable Long userId, @NonNull @PathVariable Long productId,
+            @NonNull @RequestBody DrinkRequest drinkRequest) {
+        cartService.addDrinkToCart(userId, productId, drinkRequest);
+        ResponseEntity.ok("Drink with Product ID " + productId + " has been added to the cart.");
     }
 
 }

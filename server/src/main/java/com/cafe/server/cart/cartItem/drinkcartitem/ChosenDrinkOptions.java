@@ -1,4 +1,4 @@
-package com.cafe.server.cart.cartitem.beveragecartitem;
+package com.cafe.server.cart.cartitem.drinkcartitem;
 
 import java.util.Map;
 
@@ -14,12 +14,12 @@ import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "chosen_beverage_options")
-public class ChosenBeverageOptions {
+@Table(name = "chosen_drink_options")
+public class ChosenDrinkOptions {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long beverageOptionId;
+    private Long drinkOptionId;
 
     public String chosenDrinkSize = "S"; // Size 'S', 'M', 'L'
 
@@ -28,7 +28,7 @@ public class ChosenBeverageOptions {
     public String chosenDrinkTemperature = "Hot"; // Temperature options: Cold, Hot
 
     @ElementCollection
-    @CollectionTable(name = "chosen_beverage_addons", joinColumns = @JoinColumn(name = "cart_item_id"))
+    @CollectionTable(name = "chosen_drink_addons", joinColumns = @JoinColumn(name = "cart_item_id"))
     @MapKeyColumn(name = "addon")
     @Column(name = "addon_quantity")
     public Map<String, Integer> chosenDrinkAddons = Map.of(
@@ -37,11 +37,11 @@ public class ChosenBeverageOptions {
             "Sago", 1 // Sago addon costs $1.5
     );
 
-    protected ChosenBeverageOptions() {
+    protected ChosenDrinkOptions() {
 
     }
 
-    public ChosenBeverageOptions(String chosenDrinkSize, Integer chosenDrinkSweetness,
+    public ChosenDrinkOptions(String chosenDrinkSize, Integer chosenDrinkSweetness,
             String chosenDrinkTemperature,
             Map<String, Integer> chosenDrinkAddons) {
         this.chosenDrinkSize = chosenDrinkSize;
@@ -50,12 +50,12 @@ public class ChosenBeverageOptions {
         this.chosenDrinkAddons = chosenDrinkAddons;
     }
 
-    public Long getBeverageOptionId() {
-        return beverageOptionId;
+    public Long getDrinkOptionId() {
+        return drinkOptionId;
     }
 
-    public void setBeverageOptionId(Long beverageOptionId) {
-        this.beverageOptionId = beverageOptionId;
+    public void setDrinkOptionId(Long drinkOptionId) {
+        this.drinkOptionId = drinkOptionId;
     }
 
     public String getChosenDrinkSize() {

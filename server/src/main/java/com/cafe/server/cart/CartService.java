@@ -7,10 +7,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cafe.server.cart.cartitem.CartItem;
 import com.cafe.server.cart.cartitem.CartItemRepository;
-import com.cafe.server.cart.cartitem.beveragecartitem.BeverageCartItem;
-import com.cafe.server.cart.cartitem.beveragecartitem.BeverageCartItemService;
-import com.cafe.server.cart.cartitem.beveragecartitem.ChosenBeverageOptions;
-import com.cafe.server.cart.cartitem.beveragecartitem.BeverageRequest;
+import com.cafe.server.cart.cartitem.drinkcartitem.DrinkCartItem;
+import com.cafe.server.cart.cartitem.drinkcartitem.DrinkCartItemService;
+import com.cafe.server.cart.cartitem.drinkcartitem.DrinkRequest;
+import com.cafe.server.cart.cartitem.drinkcartitem.ChosenDrinkOptions;
 import com.cafe.server.product.Product;
 import com.cafe.server.product.ProductService;
 
@@ -31,14 +31,14 @@ public class CartService {
     private final ProductService productService;
 
     @Autowired
-    private final BeverageCartItemService beverageCartItemService;
+    private final DrinkCartItemService drinkCartItemService;
 
     public CartService(CartRepository cartRepository, CartItemRepository cartItemRepository,
-            ProductService productService, BeverageCartItemService beverageCartItemService) {
+            ProductService productService, DrinkCartItemService drinkCartItemService) {
         this.cartItemRepository = cartItemRepository;
         this.cartRepository = cartRepository;
         this.productService = productService;
-        this.beverageCartItemService = beverageCartItemService;
+        this.drinkCartItemService = drinkCartItemService;
     }
 
     /**
@@ -65,16 +65,16 @@ public class CartService {
     }
 
     /**
-     * Create a new BeverageItem from a beverageRequest and add it to the cart
+     * Create a new DrinkItem from a drinkRequest and add it to the cart
      * associated with the userId
      * 
      * @param userId
      * @param productId
-     * @param beverageRequest
+     * @param drinkRequest
      */
     @Transactional
-    public void addBeverageToCart(@NonNull Long userId, @NonNull Long productId,
-            @NonNull BeverageRequest beverageRequest) {
+    public void addDrinkToCart(@NonNull Long userId, @NonNull Long productId,
+            @NonNull DrinkRequest drinkRequest) {
         try {
             Cart cart = getCartByUserId(userId);
 
@@ -93,21 +93,21 @@ public class CartService {
             if (existingItem != null) {
                 existingItem.setQuantity(existingItem.getQuantity() + 1);
             } else {
-                String chosenDrinkSize = beverageRequest.getChosenDrinkSize();
-                Integer chosenDrinkSweetness = beverageRequest.getChosenDrinkSweetness();
-                String chosenDrinkTemperature = beverageRequest.getChosenDrinkTemperature();
-                Map<String, Integer> chosenDrinkAddons = beverageRequest.getChosenDrinkAddons();
+                String chosenDrinkSize = drinkRequest.getChosenDrinkSize();
+                Integer chosenDrinkSweetness = drinkRequest.getChosenDrinkSweetness();
+                String chosenDrinkTemperature = drinkRequest.getChosenDrinkTemperature();
+                Map<String, Integer> chosenDrinkAddons = drinkRequest.getChosenDrinkAddons();
 
-                ChosenBeverageOptions beverageOptions = new ChosenBeverageOptions(chosenDrinkSize, chosenDrinkSweetness,
+                ChosenDrinkOptions drinkOptions = new ChosenDrinkOptions(chosenDrinkSize, chosenDrinkSweetness,
                         chosenDrinkTemperature, chosenDrinkAddons);
 
-                // Create a new BeverageCartItem and add it to the cart
-                BeverageCartItem newCartItem = new BeverageCartItem(product, cart, 1, beverageOptions);
+                // Create a new DrinkCartItem and add it to the cart
+                DrinkCartItem newCartItem = new DrinkCartItem(product, cart, 1, drinkOptions);
 
                 cartItemRepository.save(newCartItem);
 
-                Double newCartItemPrice = beverageCartItemService
-                        .calculateBeverageCartItemPrice(newCartItem.getCartItemId());
+                Double newCartItemPrice = drinkCartItemService
+                        .calculateDrinkCartItemPrice(newCartItem.getCartItemId());
                 newCartItem.setCartItemPrice(newCartItemPrice);
                 cart.getCartItems().add(newCartItem);
             }

@@ -1,4 +1,4 @@
-package com.cafe.server.product.beverage;
+package com.cafe.server.product.drink;
 
 import java.util.List;
 import java.util.Map;
@@ -14,35 +14,35 @@ import javax.persistence.MapKeyColumn;
 import com.cafe.server.product.Product;
 
 @Entity
-public class Beverage extends Product {
+public class Drink extends Product {
 
     @ElementCollection
-    @CollectionTable(name = "beverage_size_options", joinColumns = @JoinColumn(name = "beverage_id"))
+    @CollectionTable(name = "drink_size_options", joinColumns = @JoinColumn(name = "drink_id"))
     @MapKeyColumn(name = "size")
     @Column(name = "size_price")
     private Map<String, Double> drinkSizeOptions;
 
     @ElementCollection
-    @CollectionTable(name = "beverage_sweetness_options", joinColumns = @JoinColumn(name = "beverage_id"))
+    @CollectionTable(name = "drink_sweetness_options", joinColumns = @JoinColumn(name = "drink_id"))
     @Column(name = "sweetness")
     private List<Integer> drinkSweetnessOptions;
 
     @ElementCollection
-    @CollectionTable(name = "beverage_temperature_options", joinColumns = @JoinColumn(name = "beverage_id"))
+    @CollectionTable(name = "drink_temperature_options", joinColumns = @JoinColumn(name = "drink_id"))
     @Column(name = "temperature")
     private List<String> drinkTemperatureOptions;
 
     @ElementCollection
-    @CollectionTable(name = "beverage_addons_options", joinColumns = @JoinColumn(name = "beverage_id"))
+    @CollectionTable(name = "drink_addons_options", joinColumns = @JoinColumn(name = "drink_id"))
     @MapKeyColumn(name = "addon")
     @Column(name = "addon_price")
     private Map<String, Double> drinkAddonsOptions;
 
-    protected Beverage() {
+    protected Drink() {
 
     }
 
-    public Beverage(String productName, String productDescription, String productCategory, Double productCost,
+    public Drink(String productName, String productDescription, String productCategory, Double productCost,
             Map<String, Double> drinkSizeOptions, List<Integer> drinkSweetnessOptions,
             List<String> drinkTemperatureOptions, Map<String, Double> drinkAddonsOptions) {
         super(productName, productDescription, productCategory, productCost);
@@ -89,11 +89,11 @@ public class Beverage extends Product {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Beverage)) {
+        if (!(o instanceof Drink)) {
             return false;
         }
-        Beverage otherBeverage = (Beverage) o;
-        return this.getProductId() != null && this.getProductId().equals(otherBeverage.getProductId());
+        Drink otherDrink = (Drink) o;
+        return this.getProductId() != null && this.getProductId().equals(otherDrink.getProductId());
     }
 
     @Override

@@ -11,8 +11,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 
 import com.cafe.server.cart.CartService;
-import com.cafe.server.cart.cartitem.beveragecartitem.BeverageRequest;
-import com.cafe.server.product.beverage.BeverageService;
+import com.cafe.server.cart.cartitem.drinkcartitem.DrinkRequest;
+import com.cafe.server.product.drink.DrinkService;
 import com.cafe.server.user.customer.CustomerService;
 
 @SpringBootApplication
@@ -22,7 +22,7 @@ public class CafeApplication {
     private CustomerService customerService;
 
     @Autowired
-    private BeverageService beverageService;
+    private DrinkService drinkService;
 
     @Autowired
     private CartService cartService;
@@ -48,9 +48,9 @@ public class CafeApplication {
     );
 
     @Bean
-    ApplicationListener<ApplicationReadyEvent> testBeverageService() {
+    ApplicationListener<ApplicationReadyEvent> testDrinkService() {
         return event -> {
-            beverageService.createBeverage("Beverage A", "Beverage Description", "Beverage", 5.0, drinkSizeOptions,
+            drinkService.createDrink("Drink A", "Drink Description", "Drink", 5.0, drinkSizeOptions,
                     drinkSweetnessOptions, drinkTemperatureOptions, drinkAddonsOptions);
         };
     }
@@ -83,11 +83,11 @@ public class CafeApplication {
                     "Sago", 1 // Sago addon costs $1.0
             );
 
-            BeverageRequest beverageRequest = new BeverageRequest(chosenDrinkSize, chosenDrinkSweetness, chosenDrinkTemperature, chosenDrinkAddons);
+            DrinkRequest drinkRequest = new DrinkRequest(chosenDrinkSize, chosenDrinkSweetness, chosenDrinkTemperature, chosenDrinkAddons);
 
-            cartService.addBeverageToCart(3L, 1L, beverageRequest);
-            cartService.addBeverageToCart(3L, 1L, beverageRequest);
-            cartService.addBeverageToCart(1L, 1L, beverageRequest);
+            cartService.addDrinkToCart(3L, 1L, drinkRequest);
+            cartService.addDrinkToCart(3L, 1L, drinkRequest);
+            cartService.addDrinkToCart(1L, 1L, drinkRequest);
         };
     }
 

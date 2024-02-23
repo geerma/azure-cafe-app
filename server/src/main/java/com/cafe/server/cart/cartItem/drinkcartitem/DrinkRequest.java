@@ -1,21 +1,21 @@
-package com.cafe.server.cart.cartitem.beveragecartitem;
+package com.cafe.server.cart.cartitem.drinkcartitem;
 
 import java.util.Map;
 
 /**
  * Used for JSON requests
  */
-public class BeverageRequest {
+public class DrinkRequest {
     private String chosenDrinkSize;
     private Integer chosenDrinkSweetness;
     private String chosenDrinkTemperature;
     private Map<String, Integer> chosenDrinkAddons;
 
-    protected BeverageRequest() {
+    protected DrinkRequest() {
 
     }
 
-    public BeverageRequest(String chosenDrinkSize, Integer chosenDrinkSweetness, String chosenDrinkTemperature,
+    public DrinkRequest(String chosenDrinkSize, Integer chosenDrinkSweetness, String chosenDrinkTemperature,
             Map<String, Integer> chosenDrinkAddons) {
         this.chosenDrinkSize = chosenDrinkSize;
         this.chosenDrinkSweetness = chosenDrinkSweetness;
