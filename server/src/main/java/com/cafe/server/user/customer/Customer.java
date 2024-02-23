@@ -2,8 +2,12 @@ package com.cafe.server.user.customer;
 
 import java.util.ArrayList;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
+import com.cafe.server.cart.Cart;
 import com.cafe.server.user.User;
 
 @Entity
@@ -11,17 +15,24 @@ public class Customer extends User {
 
     private String billingAddress;
     private String paymentMethod;
+
+    // https://www.baeldung.com/jpa-cascade-types
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="cart_id")
+    private Cart cart;
+
     private ArrayList<Integer> orderList;
     private ArrayList<Integer> reservationList;
 
     protected Customer() {
     }
 
-    public Customer(String userName, String userUsername, String userPassword, String userRole, String billingAddress,
+    public Customer(String userName, String userEmail, String userUsername, String userPassword, String userRole, String billingAddress,
             String paymentMethod) {
-        super(userName, userUsername, userPassword, userRole);
+        super(userName, userEmail, userUsername, userPassword, userRole);
         this.billingAddress = billingAddress;
         this.paymentMethod = paymentMethod;
+        this.cart = new Cart(this.getUserId());
         this.orderList = new ArrayList<>();
         this.reservationList = new ArrayList<>();
     }

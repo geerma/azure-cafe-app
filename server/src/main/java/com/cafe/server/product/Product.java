@@ -1,10 +1,14 @@
 package com.cafe.server.product;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "products")
 public abstract class Product {
 
     @Id
@@ -14,19 +18,16 @@ public abstract class Product {
     private String productDescription;
     private String productCategory;
     private Double productCost;
-    private Integer productStock;
 
     protected Product() {
 
     }
 
-    public Product(String productName, String productDescription, String productCategory, Double productCost,
-            Integer productStock) {
+    public Product(String productName, String productDescription, String productCategory, Double productCost) {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productCategory = productCategory;
         this.productCost = productCost;
-        this.productStock = productStock;
     }
 
     public Long getProductId() {
@@ -69,14 +70,6 @@ public abstract class Product {
         this.productCost = productCost;
     }
 
-    public Integer getProductStock() {
-        return productStock;
-    }
-
-    public void setProductStock(Integer productStock) {
-        this.productStock = productStock;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -85,11 +78,11 @@ public abstract class Product {
         if (!(o instanceof Product)) {
             return false;
         }
-        return productId != null && productId.equals(((Product) o).productId);
+        return this.getProductId() != null && this.getProductId().equals(((Product) o).getProductId());
     }
 
     @Override
     public int hashCode() {
-        return 31;
+        return Objects.hash(this.getProductId());
     }
 }
