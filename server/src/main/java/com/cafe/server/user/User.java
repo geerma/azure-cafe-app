@@ -18,7 +18,7 @@ public abstract class User {
     private String userName;
     private String userEmail;
     private String userUsername;
-    private String userPassword;
+    private String userPassword; // Encoded Password
     private String userRole;
 
     protected User() {

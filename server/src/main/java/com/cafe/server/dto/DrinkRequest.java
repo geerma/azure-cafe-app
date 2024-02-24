@@ -1,4 +1,4 @@
-package com.cafe.server.cart.cartitem.drinkcartitem;
+package com.cafe.server.dto;
 
 import java.util.Map;
 

@@ -26,6 +26,7 @@ public class Customer extends User {
     private ArrayList<Integer> reservationList;
 
     protected Customer() {
+        
     }
 
     public Customer(String userName, String userEmail, String userUsername, String userPassword, String userRole, String billingAddress,

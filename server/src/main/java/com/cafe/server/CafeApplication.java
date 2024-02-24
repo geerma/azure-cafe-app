@@ -11,7 +11,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 
 import com.cafe.server.cart.CartService;
-import com.cafe.server.cart.cartitem.drinkcartitem.DrinkRequest;
+import com.cafe.server.dto.DrinkRequest;
+import com.cafe.server.dto.UserRegistrationRequest;
 import com.cafe.server.order.OrderService;
 import com.cafe.server.product.drink.DrinkService;
 import com.cafe.server.product.food.FoodService;
@@ -75,12 +76,26 @@ public class CafeApplication {
     @Bean
     ApplicationListener<ApplicationReadyEvent> testCustomerService() {
         return event -> {
-            customerService.createCustomer("New Customer 1", "newcustomer1@test.com", "newcustomer1",
-                    "newpassword1");
-            customerService.createCustomer("New Customer 2", "newcustomer2@test.com", "newcustomer2",
-                    "newpassword2");
-            customerService.createCustomer("New Customer 3", "newcustomer3@test.com", "newcustomer3",
-                    "newpassword3");
+
+            UserRegistrationRequest userRegistrationRequest1 = new UserRegistrationRequest("New Customer 1", "newcustomer1@test.com", "newcustomer1",
+            "newpassword12");
+
+            UserRegistrationRequest userRegistrationRequest2 = new UserRegistrationRequest("New Customer 2", "newcustomer2@test.com", "newcustomer2",
+            "newpassword12");
+
+            UserRegistrationRequest userRegistrationRequest3 = new UserRegistrationRequest("New Customer 3", "newcustomer3@test.com", "newcustomer3",
+            "newpassword3");
+
+            customerService.registerCustomer(userRegistrationRequest1);
+            customerService.registerCustomer(userRegistrationRequest2);
+            customerService.registerCustomer(userRegistrationRequest3);
+
+            // customerService.createCustomer("New Customer 1", "newcustomer1@test.com", "newcustomer1",
+            //         "newpassword1");
+            // customerService.createCustomer("New Customer 2", "newcustomer2@test.com", "newcustomer2",
+            //         "newpassword2");
+            // customerService.createCustomer("New Customer 3", "newcustomer3@test.com", "newcustomer3",
+            //         "newpassword3");
         };
     }
 
