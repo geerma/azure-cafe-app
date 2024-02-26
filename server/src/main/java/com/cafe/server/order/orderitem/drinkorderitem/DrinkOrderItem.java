@@ -18,6 +18,10 @@ public class DrinkOrderItem extends OrderItem {
     @JoinColumn(name = "chosen_drink_option_id")
     private ChosenDrinkOptions chosenDrinkOptions;
 
+    protected DrinkOrderItem() {
+
+    }
+
     public DrinkOrderItem(Product product, Order order, Integer quantity, Double orderItemPrice,
             ChosenDrinkOptions chosenDrinkOptions) {
         super(product, order, quantity, orderItemPrice);
@@ -31,7 +35,5 @@ public class DrinkOrderItem extends OrderItem {
     public void setChosenDrinkOptions(ChosenDrinkOptions chosenDrinkOptions) {
         this.chosenDrinkOptions = chosenDrinkOptions;
     }
-
-
 
 }

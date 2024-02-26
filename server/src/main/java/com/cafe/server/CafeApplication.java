@@ -77,25 +77,18 @@ public class CafeApplication {
     ApplicationListener<ApplicationReadyEvent> testCustomerService() {
         return event -> {
 
-            UserRegistrationRequest userRegistrationRequest1 = new UserRegistrationRequest("New Customer 1", "newcustomer1@test.com", "newcustomer1",
-            "newpassword12");
+            UserRegistrationRequest userRegistrationRequest1 = new UserRegistrationRequest("newcustomer1",
+            "newpassword1", "newcustomer1@test.com");
 
-            UserRegistrationRequest userRegistrationRequest2 = new UserRegistrationRequest("New Customer 2", "newcustomer2@test.com", "newcustomer2",
-            "newpassword12");
+            UserRegistrationRequest userRegistrationRequest2 = new UserRegistrationRequest("newcustomer2",
+            "newpassword2", "newcustomer2@test.com");
 
-            UserRegistrationRequest userRegistrationRequest3 = new UserRegistrationRequest("New Customer 3", "newcustomer3@test.com", "newcustomer3",
-            "newpassword3");
+            UserRegistrationRequest userRegistrationRequest3 = new UserRegistrationRequest("newcustomer3",
+            "newpassword3", "newcustomer3@test.com");
 
             customerService.registerCustomer(userRegistrationRequest1);
             customerService.registerCustomer(userRegistrationRequest2);
             customerService.registerCustomer(userRegistrationRequest3);
-
-            // customerService.createCustomer("New Customer 1", "newcustomer1@test.com", "newcustomer1",
-            //         "newpassword1");
-            // customerService.createCustomer("New Customer 2", "newcustomer2@test.com", "newcustomer2",
-            //         "newpassword2");
-            // customerService.createCustomer("New Customer 3", "newcustomer3@test.com", "newcustomer3",
-            //         "newpassword3");
         };
     }
 

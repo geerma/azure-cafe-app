@@ -9,31 +9,30 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import com.cafe.server.cart.Cart;
-import com.cafe.server.user.User;
+import com.cafe.server.user.CafeUser;
 
 @Entity
-public class Customer extends User {
+public class Customer extends CafeUser {
 
     private String billingAddress;
     private String paymentMethod;
 
     // https://www.baeldung.com/jpa-cascade-types
     @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="cart_id")
+    @JoinColumn(name = "cart_id")
     private Cart cart;
 
     private ArrayList<Integer> orderList;
     private ArrayList<Integer> reservationList;
 
     protected Customer() {
-        
+
     }
 
-    public Customer(String userName, String userEmail, String userUsername, String userPassword, String userRole, String billingAddress,
-            String paymentMethod) {
-        super(userName, userEmail, userUsername, userPassword, userRole);
-        this.billingAddress = billingAddress;
-        this.paymentMethod = paymentMethod;
+    public Customer(String username, String password, String email) {
+        super(username, password, email, "USER");
+        this.billingAddress = null;
+        this.paymentMethod = null;
         this.cart = new Cart(this.getUserId());
         this.orderList = new ArrayList<>();
         this.reservationList = new ArrayList<>();

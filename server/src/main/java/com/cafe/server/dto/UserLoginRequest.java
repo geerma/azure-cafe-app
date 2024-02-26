@@ -2,28 +2,28 @@ package com.cafe.server.dto;
 
 public class UserLoginRequest {
 
-    private String userUsername;
-    private String userPassword;
+    private String username;
+    private String password;
 
-    public UserLoginRequest(String userUsername, String userPassword) {
-        this.userUsername = userUsername;
-        this.userPassword = userPassword;
+    public UserLoginRequest(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
-    public String getUserUsername() {
-        return userUsername;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserUsername(String userUsername) {
-        this.userUsername = userUsername;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getUserPassword() {
-        return userPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

@@ -1,5 +1,7 @@
 package com.cafe.server.user.customer;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,28 +23,27 @@ public class CustomerService {
     }
 
     public Customer registerCustomer(UserRegistrationRequest request) {
-        String userName = request.getUserName();
-        String userUsername = request.getUserUsername();
-        String userEmail = request.getUserEmail();
-        String rawPassword = request.getUserPassword();
+        String username = request.getUsername();
+        String rawPassword = request.getPassword();
+        String email = request.getEmail();
 
         // Hash and salt the password before storing it
         String encodedPassword = passwordEncoder.encode(rawPassword);
 
-        Customer newCustomer = new Customer(userName, userEmail, userUsername, encodedPassword, "Customer", null, null);
+        Customer newCustomer = new Customer(username, encodedPassword, email);
 
         return customerRepository.save(newCustomer);
     }
 
     public boolean loginCustomer(UserLoginRequest request) {
 
-        String userUsername = request.getUserUsername();
-        String rawPassword = request.getUserPassword();
+        String userUsername = request.getUsername();
+        String rawPassword = request.getPassword();
 
-        Customer customer = customerRepository.findCustomerByUsername(userUsername);
+        Optional<Customer> customer = customerRepository.findByUsername(userUsername);
 
-        if (customer != null) {
-            String encodedPassword = customer.getUserPassword();
+        if (customer.isPresent()) {
+            String encodedPassword = customer.get().getPassword();
             if (passwordEncoder.matches(rawPassword, encodedPassword)) {
                 // User is authenticated, return true
                 return true;
@@ -53,11 +54,4 @@ public class CustomerService {
         return false;
     }
 
-    // public Customer createCustomer(String userName, String userEmail, String
-    // userUsername, String userPassword) {
-    // Customer newCustomer = new Customer(userName, userEmail, userUsername,
-    // userPassword, "Customer", null, null);
-
-    // return customerRepository.save(newCustomer);
-    // }
 }

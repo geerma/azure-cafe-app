@@ -1,49 +1,39 @@
 package com.cafe.server.dto;
 
 public class UserRegistrationRequest {
-    
-    private String userName;
-    private String userEmail;
-    private String userUsername;
-    private String userPassword;
-    
-    public UserRegistrationRequest(String userName, String userEmail, String userUsername, String userPassword) {
-        this.userName = userName;
-        this.userEmail = userEmail;
-        this.userUsername = userUsername;
-        this.userPassword = userPassword;
+
+    private String username;
+    private String password;
+    private String email;
+
+    public UserRegistrationRequest(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getUserUsername() {
-        return userUsername;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserUsername(String userUsername) {
-        this.userUsername = userUsername;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-    
 }
