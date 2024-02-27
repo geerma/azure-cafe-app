@@ -20,7 +20,7 @@ import com.cafe.server.user.customer.CustomerRepository;
 import com.cafe.server.user.customer.CustomerService;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/v1/auth")
 public class AuthController {
 
     @Autowired
@@ -63,7 +63,7 @@ public class AuthController {
     public ResponseEntity<?> registerCustomer(@RequestBody UserRegistrationRequest registrationRequest) {
 
         try {
-            // Add checks to username and password here
+            // Add checks to username and password validation here
 
             // Check if the username is already taken
             if (customerRepository.findByUsername(registrationRequest.getUsername()).isPresent()) {

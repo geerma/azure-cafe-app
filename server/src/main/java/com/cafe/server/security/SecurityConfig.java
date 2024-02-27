@@ -47,14 +47,15 @@ public class SecurityConfig {
                 .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(
                         authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry
-                                .antMatchers("/admin/**").hasRole("ADMIN")
-                                .antMatchers("/users/**").hasAnyAuthority("USER", "ADMIN")
-                                .antMatchers("/customers/**").hasAnyAuthority("USER", "ADMIN")
-                                .antMatchers("/carts/**").hasAnyAuthority("USER", "ADMIN")
-                                .antMatchers("/cartitems/**").hasAnyAuthority("USER", "ADMIN")
-                                .antMatchers("/orders/**").hasAnyAuthority("USER", "ADMIN")
-                                .antMatchers(HttpMethod.DELETE, "/admin/**").hasAnyAuthority("ADMIN")
-                                .antMatchers("/auth/**").permitAll()
+                                .antMatchers("/api/v1/admin/**").hasRole("ADMIN")
+                                .antMatchers(HttpMethod.DELETE).hasAnyAuthority("ADMIN")
+                                .antMatchers("/api/v1/users/**").hasAnyAuthority("USER", "ADMIN")
+                                .antMatchers("/api/v1/customers/**").hasAnyAuthority("USER", "ADMIN")
+                                .antMatchers("/api/v1/products/**", "/api/v1/drinks/**", "/api/v1/foods/**", "/api/v1/merchandises/**").hasAnyAuthority("USER", "ADMIN")
+                                .antMatchers("/api/v1/carts/**").hasAnyAuthority("USER", "ADMIN")
+                                .antMatchers("/api/v1/cartitems/**").hasAnyAuthority("USER", "ADMIN")
+                                .antMatchers("/api/v1/orders/**").hasAnyAuthority("USER", "ADMIN")
+                                .antMatchers("/api/v1/auth/**").permitAll()
                                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults());
 

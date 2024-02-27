@@ -5,7 +5,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/drinks")
+@RequestMapping("/api/v1/drinks")
 public class DrinkController {
 
     private final DrinkRepository drinkRepository;
@@ -14,14 +14,16 @@ public class DrinkController {
         this.drinkRepository = drinkRepository;
     }
 
-    @PostMapping("/")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Drink createDrink(@NonNull @RequestBody Drink drink) {
-        return drinkRepository.save(drink);
-    }
-
     @GetMapping("/")
     public Iterable<Drink> getDrinks() {
         return drinkRepository.findAll();
     }
+
+    @PostMapping("/createdrink")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Drink createDrink(@NonNull @RequestBody Drink drink) {
+        // Implement drink creation
+        return drinkRepository.save(drink);
+    }
+
 }

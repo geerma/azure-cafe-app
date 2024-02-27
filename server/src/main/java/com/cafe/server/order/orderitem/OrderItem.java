@@ -10,6 +10,7 @@ import javax.persistence.Table;
 
 import com.cafe.server.order.Order;
 import com.cafe.server.product.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "order_items")
@@ -25,6 +26,7 @@ public class OrderItem {
 
     @ManyToOne
     @JoinColumn(name = "order_id")
+    @JsonIgnore // To break cyclic json retrieval of order
     private Order order;
 
     private Integer quantity;

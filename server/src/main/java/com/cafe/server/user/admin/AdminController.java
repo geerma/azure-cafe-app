@@ -4,8 +4,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
+import com.cafe.server.dto.UserRegistrationRequest;
+
 @RestController
-@RequestMapping("/admins")
+@RequestMapping("/api/v1/admins")
 public class AdminController {
 
     private final AdminRepository adminRepository;
@@ -14,15 +16,19 @@ public class AdminController {
         this.adminRepository = adminRepository;
     }
 
-    @PostMapping("/register")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Admin createAdmin(@NonNull @RequestBody Admin admin) {
-        return adminRepository.save(admin);
-    }
-
     @GetMapping("/")
     public Iterable<Admin> getTodos() {
         return adminRepository.findAll();
+    }
+
+    @PostMapping("/register")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Admin createAdmin(@NonNull @RequestBody UserRegistrationRequest userRegistrationRequest) {
+        // Implement Admin creation with a hashed password. Should be in AuthController
+        Admin newAdmin = new Admin(userRegistrationRequest.getUsername(), userRegistrationRequest.getPassword(),
+                userRegistrationRequest.getEmail());
+
+        return adminRepository.save(newAdmin);
     }
 
 }
