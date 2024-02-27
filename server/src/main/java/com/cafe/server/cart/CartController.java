@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
-import com.cafe.server.cart.cartitem.drinkcartitem.DrinkRequest;
+import com.cafe.server.dto.DrinkRequest;
 
 @RestController
 @RequestMapping("/carts")

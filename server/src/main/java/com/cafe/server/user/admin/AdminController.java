@@ -5,7 +5,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/admins")
 public class AdminController {
 
     private final AdminRepository adminRepository;
@@ -14,9 +14,9 @@ public class AdminController {
         this.adminRepository = adminRepository;
     }
 
-    @PostMapping("/")
+    @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public Admin createTodo(@NonNull @RequestBody Admin admin) {
+    public Admin createAdmin(@NonNull @RequestBody Admin admin) {
         return adminRepository.save(admin);
     }
 
@@ -24,4 +24,5 @@ public class AdminController {
     public Iterable<Admin> getTodos() {
         return adminRepository.findAll();
     }
+
 }

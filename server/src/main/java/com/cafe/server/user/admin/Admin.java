@@ -4,17 +4,17 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 
-import com.cafe.server.user.User;
+import com.cafe.server.user.CafeUser;
 
 @Entity
-public class Admin extends User {
+public class Admin extends CafeUser {
 
     protected Admin() {
         
     }
 
-    public Admin(String userName, String userEmail, String userUsername, String userPassword, String userRole) {
-        super(userName, userEmail, userUsername, userPassword, userRole);
+    public Admin(String username, String password, String email) {
+        super(username, password, email, "ADMIN");
     }
 
     @Override

@@ -9,7 +9,7 @@ import com.cafe.server.cart.cartitem.CartItem;
 import com.cafe.server.cart.cartitem.CartItemRepository;
 import com.cafe.server.cart.cartitem.drinkcartitem.DrinkCartItem;
 import com.cafe.server.cart.cartitem.drinkcartitem.DrinkCartItemService;
-import com.cafe.server.cart.cartitem.drinkcartitem.DrinkRequest;
+import com.cafe.server.dto.DrinkRequest;
 import com.cafe.server.cart.cartitem.drinkcartitem.ChosenDrinkOptions;
 import com.cafe.server.product.Product;
 import com.cafe.server.product.ProductService;
