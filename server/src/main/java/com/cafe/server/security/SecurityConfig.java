@@ -55,7 +55,7 @@ public class SecurityConfig {
                                 .antMatchers("/api/v1/carts/**").hasAnyAuthority("USER", "ADMIN")
                                 .antMatchers("/api/v1/cartitems/**").hasAnyAuthority("USER", "ADMIN")
                                 .antMatchers("/api/v1/orders/**").hasAnyAuthority("USER", "ADMIN")
-                                .antMatchers("/api/v1/auth/**").permitAll()
+                                .antMatchers("/", "/api/v1/auth/**", "/swagger-ui/**", "/swagger-ui**").permitAll()
                                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults());
 
