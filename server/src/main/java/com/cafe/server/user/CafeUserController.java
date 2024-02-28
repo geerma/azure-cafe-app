@@ -2,14 +2,16 @@ package com.cafe.server.user;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/v1/users")
 public class CafeUserController {
 
     private final CafeUserRepository cafeUserRepository;
 
+    @Autowired
     public CafeUserController(CafeUserRepository cafeUserRepository) {
         this.cafeUserRepository = cafeUserRepository;
     }
@@ -25,8 +27,8 @@ public class CafeUserController {
     }
 
     @GetMapping("/userid/{userid}")
-    public Optional<CafeUser> getUserById(@PathVariable("userid") Long userid) {
-        return cafeUserRepository.findById(userid);
+    public Optional<CafeUser> getUserById(@PathVariable("userid") Long userId) {
+        return cafeUserRepository.findById(userId);
     }
 
 }

@@ -114,15 +114,13 @@ public class CafeApplication {
             cartService.addDrinkToCart(3L, 1L, drinkRequest);
             cartService.addDrinkToCart(3L, 1L, drinkRequest);
             cartService.addDrinkToCart(1L, 1L, drinkRequest);
-
-            cartService.decreaseQuantityFromCart(1L, 1L);
         };
     }
 
     @Bean
     ApplicationListener<ApplicationReadyEvent> testOrderService() {
         return event -> {
-            orderService.convertCartToOrder(3L);
+            orderService.convertCartToOrder(1L);
             System.out.println("Converted Cart to Order");
         };
     }

@@ -5,7 +5,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/merchandises")
+@RequestMapping("/api/v1/merchandises")
 public class MerchandiseController {
 
     private final MerchandiseRepository merchandiseRepository;
@@ -14,14 +14,16 @@ public class MerchandiseController {
         this.merchandiseRepository = merchandiseRepository;
     }
 
-    @PostMapping("/")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Merchandise createMerchandise(@NonNull @RequestBody Merchandise merchandise) {
-        return merchandiseRepository.save(merchandise);
-    }
-
     @GetMapping("/")
     public Iterable<Merchandise> getMerchandises() {
         return merchandiseRepository.findAll();
     }
+
+    @PostMapping("/createmerchandise")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Merchandise createMerchandise(@NonNull @RequestBody Merchandise merchandise) {
+        // Implement merchandise creation
+        return merchandiseRepository.save(merchandise);
+    }
+
 }

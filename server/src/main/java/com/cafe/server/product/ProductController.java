@@ -1,9 +1,11 @@
 package com.cafe.server.product;
 
+import java.util.Optional;
+
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/v1/products")
 public class ProductController {
 
     private final ProductRepository productRepository;
@@ -16,4 +18,10 @@ public class ProductController {
     public Iterable<Product> getAllProducts() {
         return productRepository.findAll();
     }
+
+    @GetMapping("/productid/{productid}")
+    public Optional<Product> getProductById(@PathVariable("productid") Long productId) {
+        return productRepository.findById(productId);
+    }
+
 }

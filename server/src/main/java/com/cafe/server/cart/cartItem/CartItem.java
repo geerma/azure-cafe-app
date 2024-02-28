@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 import com.cafe.server.cart.Cart;
 import com.cafe.server.product.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "cart_items")
@@ -27,6 +28,7 @@ public class CartItem implements CartItemInterface {
 
     @ManyToOne
     @JoinColumn(name = "cart_id")
+    @JsonIgnore // To break cyclic json retrieval of carts
     private Cart cart;
 
     private Integer quantity;

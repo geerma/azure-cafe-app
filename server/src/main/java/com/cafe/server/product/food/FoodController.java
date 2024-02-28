@@ -5,7 +5,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/foods")
+@RequestMapping("/api/v1/foods")
 public class FoodController {
 
     private final FoodRepository foodRepository;
@@ -14,14 +14,16 @@ public class FoodController {
         this.foodRepository = foodRepository;
     }
 
-    @PostMapping("/")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Food createFood(@NonNull @RequestBody Food food) {
-        return foodRepository.save(food);
-    }
-
     @GetMapping("/")
     public Iterable<Food> getFoods() {
         return foodRepository.findAll();
     }
+
+    @PostMapping("/createfood")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Food createFood(@NonNull @RequestBody Food food) {
+        // Implement food creation
+        return foodRepository.save(food);
+    }
+
 }
