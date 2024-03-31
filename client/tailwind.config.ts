@@ -16,6 +16,7 @@ const config: Config = {
       },
     },
     colors: {
+      "black": "#000000",
       "yellow": "#FFC226",
     },
   },
