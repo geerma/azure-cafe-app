@@ -12,12 +12,16 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        cafeHomepage: "url('/homepage_background.jpg')"
+        cafeHomepage: "url('/homepage_background.jpg')",
       },
     },
     colors: {
-      "black": "#000000",
-      "yellow": "#FFC226",
+      beigePrimary: "#FAF6ED",
+      beigeSecondary: "#faf0e6",
+      black: "#000000",
+      gold: "#82724d",
+      gray: "#42413b",
+      yellow: "#FFC226",
     },
   },
   plugins: [],
