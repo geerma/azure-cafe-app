@@ -13,15 +13,17 @@ Welcome to our cozy cafe! Customers can explore a variety of food items, drinks,
 
 ## Technologies
 
-- **Frontend: (*to-be-implemented*)**  React.js, JavaScript, and Tailwind CSS.
+- **Frontend:**  Next.js, TypeScript, and Tailwind CSS.
 
-- **Backend:** Java and Spring Boot was used to build a robust and scalable RESTful APIs. Within the server, I used JWTs, Spring Security, and BCrypt to implement a secure application.
+- **Backend:** Java and Spring Boot were used to build a robust and scalable RESTful APIs. Within the server, I used JWTs, Spring Security, and BCrypt to implement a secure application. Used Swagger UI to create a visual and interactive REST API documentation to allow for end-user viewing.
 
-- **Database:** The application utilizes Microsoft Azure SQL Database to store information relating the the user, product, and orders.
+- **Database:** The application utilizes Microsoft Azure SQL Database to store information relating the the user, product, orders, and reservations.
+
+- **Cloud Services:** Utilized Azure Blob Storage and Azure Front Door CDN to optimize the delivery of low-latency content at scale
 
 ## Live Demo
 
-Frontend (*to-be-implemented*)
+Frontend (*work-in-progress*): azure-cafe-app.vercel.app/
 
 Backend API Server (Swagger UI): https://azure-cafe-app-production.up.railway.app/swagger-ui/ 
 - If it asks for credentials when visiting the site, use: `newcustomer1` and `newpassword1`
@@ -56,6 +58,8 @@ Exploring how I would potentially scale this project up led me to resources on M
 Using those references, I researched and designed the following system design. Key upgrades compared to my current application includes a CDN to pull images from a Blob Storage, and a Redis cache for frequently accessed data such as Product searching. Other improvements could be a Load Balancer and Azure Functions to handle payment.
 
 ![system_architecture](pictures/system_architecture.png)
+
+The application currently uses Azure Blob Storage and Azure Front Door CDN to optimize content delivery.
 
 ## Design Concept
 
