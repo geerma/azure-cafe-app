@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
+  const BASE_CDN_URL:String = process.env.BASE_CDN_URL || "http://localhost:3000";
+
   return (
     <main>
       <div className="flex flex-col min-h-screen min-w-max items-center justify-between py-96 text-yellow bg-cafeHomepage bg-cover">
@@ -37,7 +39,7 @@ export default function Home() {
         <div className="flex flex-row min-w-full min-h-[600px] bg-beigePrimary">
           <div className="relative h-[600px] w-[800px]">
             <Image
-              src="/homepage_drink.jpg"
+              src={`${BASE_CDN_URL}/homepage_drink.jpg`}
               alt="drink_image"
               fill={true}
             />
@@ -55,7 +57,7 @@ export default function Home() {
           </div>
           <div className="relative h-[600px] w-[800px]">
             <Image
-              src="/homepage_food.jpg"
+              src={`${BASE_CDN_URL}/homepage_food.jpg`}
               alt="food_image"
               fill={true}
             />
@@ -65,7 +67,7 @@ export default function Home() {
         <div className="flex flex-row min-w-full min-h-[600px] bg-beigePrimary">
           <div className="relative h-[600px] w-[800px]">
             <Image
-              src="/homepage_flower_2.jpg"
+              src={`${BASE_CDN_URL}/homepage_flower_2.jpg`}
               alt="flower_image"
               fill={true}
             />
@@ -83,7 +85,7 @@ export default function Home() {
           </div>
           <div className="relative h-[600px] w-[800px]">
             <Image
-              src="/homepage_table_1.jpg"
+              src={`${BASE_CDN_URL}/homepage_table_1.jpg`}
               alt="table_image"
               fill={true}
             />
@@ -93,7 +95,7 @@ export default function Home() {
         <div className="flex flex-row min-w-full min-h-[600px] bg-beigePrimary">
           <div className="relative h-[600px] w-[800px]">
             <Image
-              src="/homepage_background.jpg"
+              src={`${BASE_CDN_URL}/homepage_background.jpg`}
               alt="order_image"
               fill={true}
             />
