@@ -19,7 +19,7 @@ Welcome to our cozy cafe! Customers can explore a variety of food items, drinks,
 
 - **Database:** The application utilizes Microsoft Azure SQL Database to store information relating the the user, product, orders, and reservations.
 
-- **Cloud Services:** Utilized Azure Blob Storage and Azure Front Door CDN to optimize the delivery of low-latency content at scale
+- **Cloud Services:** Utilized Azure Blob Storage and Azure Content Delivery Network (CDN) to optimize the caching and global delivery of low-latency content at scale
 
 ## Live Demo
 
@@ -59,7 +59,7 @@ Using those references, I researched and designed the following system design. K
 
 ![system_architecture](pictures/system_architecture.png)
 
-The application currently uses Azure Blob Storage and Azure Front Door CDN to optimize content delivery.
+The application currently uses Azure Blob Storage and Azure Content Delivery Network (CDN) to optimize content delivery.
 
 ## Design Concept
 
