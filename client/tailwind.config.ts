@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 
+const BASE_CDN_URL = process.env.BASE_CDN_URL;
+
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -12,7 +14,7 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        cafeHomepage: "url('/homepage_background.jpg')",
+        cafeHomepage: `url(${`${BASE_CDN_URL}/homepage_background.jpg`})`
       },
     },
     colors: {

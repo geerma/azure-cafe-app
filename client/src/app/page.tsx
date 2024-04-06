@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
-  const BASE_CDN_URL:String = process.env.BASE_CDN_URL || "http://localhost:3000";
+  const BASE_CDN_URL: String =
+    process.env.BASE_CDN_URL || "http://localhost:3000";
 
   return (
     <main>
@@ -17,10 +18,14 @@ export default function Home() {
               <Link href="/">Home</Link>
             </li>
             <li className="px-12">
-              <Link href="/catalog#menu" scroll={false}>Menu</Link>
+              <Link href="/catalog#menu" scroll={false}>
+                Menu
+              </Link>
             </li>
             <li className="px-12">
-              <Link href="/catalog#flowers" scroll={false}>Flowers</Link>
+              <Link href="/catalog#flowers" scroll={false}>
+                Flowers
+              </Link>
             </li>
             <li className="px-12">
               <Link href="/order">Online Order</Link>
@@ -34,6 +39,7 @@ export default function Home() {
           </ul>
         </nav>
       </div>
+
       <div id="about" className="flex flex-col items-center w-fit">
         {/* First */}
         <div className="flex flex-row min-w-full min-h-[600px] bg-beigePrimary">
@@ -46,14 +52,18 @@ export default function Home() {
           </div>
           <div className="flex flex-col relative h-[600px] w-[60vw] text-center">
             <h1 className="text-4xl my-24 text-gray">Drinks</h1>
-            <p className="text-2xl text-gold px-36">Refreshing drinks after a long day.</p>
+            <p className="text-2xl text-gold px-36">
+              Refreshing drinks after a long day.
+            </p>
           </div>
         </div>
         {/* Second */}
         <div className="flex flex-row min-w-full min-h-[600px] bg-beigePrimary">
           <div className="relative h-[600px] w-[60vw] text-center">
             <h1 className="text-4xl my-24 text-gray">Food</h1>
-            <p className="text-2xl text-gold px-36">Tasty desserts such as cakes, croffles, and macarons.</p>
+            <p className="text-2xl text-gold px-36">
+              Tasty desserts such as cakes, croffles, and macarons.
+            </p>
           </div>
           <div className="relative h-[600px] w-[800px]">
             <Image
@@ -74,14 +84,19 @@ export default function Home() {
           </div>
           <div className="relative h-[600px] w-[60vw] text-center">
             <h1 className="text-4xl my-24 text-gray">Flowers</h1>
-            <p className="text-2xl text-gold px-36">Carefully arranged flowers for any special occassion.</p>
+            <p className="text-2xl text-gold px-36">
+              Carefully arranged flowers for any special occassion.
+            </p>
           </div>
         </div>
         {/* Fourth */}
         <div className="flex flex-row min-w-full min-h-[600px] bg-beigePrimary">
           <div className="relative h-[600px] w-[60vw] text-center">
-          <h1 className="text-4xl my-24 text-gray">Table Reservations</h1>
-            <p className="text-2xl text-gold px-36">A perfect space for many activities, whether it be quiet studying or to catch up with friends.</p>
+            <h1 className="text-4xl my-24 text-gray">Table Reservations</h1>
+            <p className="text-2xl text-gold px-36">
+              A perfect space for many activities, whether it be quiet studying
+              or to catch up with friends.
+            </p>
           </div>
           <div className="relative h-[600px] w-[800px]">
             <Image
@@ -102,7 +117,10 @@ export default function Home() {
           </div>
           <div className="relative h-[600px] w-[60vw] text-center">
             <h1 className="text-4xl my-24 text-gray">Online Ordering</h1>
-            <p className="text-2xl text-gold px-36">Conveniently order your desserts, drinks, and flowers on the go. We will make sure that they are ready for pickup when you arrive.</p>
+            <p className="text-2xl text-gold px-36">
+              Conveniently order your desserts, drinks, and flowers on the go.
+              We will make sure that they are ready for pickup when you arrive.
+            </p>
           </div>
         </div>
       </div>
