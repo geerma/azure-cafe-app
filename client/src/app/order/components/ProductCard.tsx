@@ -47,67 +47,69 @@ const ProductCard = ({ drink }: any) => {
           <p className="text-lg">${String(drink.productCost)}.00</p>
         </DialogTrigger>
         <DialogContent>
-          <DialogHeader>
-            <DialogTitle>{drink.productName}</DialogTitle>
-            <DialogDescription>
-              <Image
-                src={"/order_bubble_tea.jpg"}
-                alt="drink image"
-                width={230}
-                height={230}
-              />
-              <span>{drink.productDescription}</span>
-              <br></br>
-              <span>${String(drink.productCost)}.00</span>
-            </DialogDescription>
-            <DialogDescription>
-              <>
-                <h1>Size Options</h1>
-                {Object.entries(drink.drinkSizeOptions).map(([key, value]) => (
+          <div className="font-notosanskr font-normal">
+            <Image
+              src={"/order_bubble_tea.jpg"}
+              alt="drink image"
+              width={150}
+              height={150}
+            />
+            <h1 className="text-lg font-semibold">{drink.productName}</h1>
+            <p>{drink.productDescription}</p>
+            <fieldset className="flex flex-row gap-2 mt-2">
+              <legend>Size Options</legend>
+              {Object.entries(drink.drinkSizeOptions).map(([key, value]) => (
+                <div key={key}>
+                  <input type="radio" />
+                  <label className="p-2">
+                    {key}: ${String(drink.productCost + value)}
+                  </label>
+                </div>
+              ))}
+            </fieldset>
+            <fieldset className="flex flex-row gap-2 mt-2">
+              <legend>Sweetness Options</legend>
+              {drink.drinkSweetnessOptions.map((sweetnessOption: Number) => (
+                <div key={String(sweetnessOption)}>
+                  <input
+                    type="radio"
+                    name="drinkSweetness"
+                    value={String(sweetnessOption)}
+                  />
+                  <label className="p-2">{String(sweetnessOption)}%</label>
+                </div>
+              ))}
+            </fieldset>
+            <fieldset className="flex flex-col mt-2">
+              <legend>Add-on Options (Additional Costs)</legend>
+              {Object.entries(drink.drinkAddonsOptions).map(
+                ([key, value]) => (
                   <div key={key}>
-                    <input type="radio" />
-                    <label>
+                    <input type="checkbox" />
+                    <label className="p-2">
                       {key}: {String(value)}
                     </label>
                   </div>
-                ))}
-              </>
-            </DialogDescription>
-            <DialogDescription>
-              <fieldset>
-                <legend>Sweetness Options</legend>
-                {drink.drinkSweetnessOptions.map((sweetnessOption: Number) => (
-                  <div key={String(sweetnessOption)}>
-                    <input
-                      type="radio"
-                      name="drinkSweetness"
-                      value={String(sweetnessOption)}
-                    />
-                    <label>{String(sweetnessOption)}</label>
-                  </div>
-                ))}
-              </fieldset>
-            </DialogDescription>
-            <DialogDescription>
-              <>
-                <h1>Drink Add-on Options</h1>
-                {Object.entries(drink.drinkAddonsOptions).map(
-                  ([key, value]) => (
-                    <div key={key}>
-                      <input type="radio" />
-                      <label>
-                        {key}: {String(value)}
-                      </label>
-                    </div>
-                  )
-                )}
-              </>
-            </DialogDescription>
-            <DialogDescription>
-              <h1>Temperature Options</h1>
-            </DialogDescription>
-            <button>Add to Cart</button>
-          </DialogHeader>
+                )
+              )}
+            </fieldset>
+            <fieldset className="flex flex-col mt-2">
+              <legend>Add-on Options</legend>
+              {drink.drinkTemperatureOptions.map((temperatureOption: String) => (
+                <div key={String(temperatureOption)}>
+                  <input
+                    type="radio"
+                    name="drinkTemperature"
+                    value={String(temperatureOption)}
+                  />
+                  <label className="p-2">{temperatureOption}</label>
+                </div>
+              ))}
+            </fieldset>
+            <div className="flex flex-col">
+              <button className="items-center ">Add to Cart</button>
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
     </div>

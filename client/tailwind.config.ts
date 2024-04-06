@@ -40,6 +40,9 @@ const config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         cafeHomepage: `url(${BASE_CDN_URL}/homepage_background.jpg)`,
       },
+      fontFamily: {
+        notosanskr: ["Noto Sans Kr", "sans-serif"],
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
