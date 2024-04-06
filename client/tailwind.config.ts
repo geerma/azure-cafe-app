@@ -14,8 +14,11 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        cafeHomepage: `url(${`${BASE_CDN_URL}/homepage_background.jpg`})`
+        cafeHomepage: `url(${`${BASE_CDN_URL}/homepage_background.jpg`})`,
       },
+    },
+    fontFamily: {
+      notosanskr: ["Noto Sans KR", "sans-serif"],
     },
     colors: {
       beigePrimary: "#FAF6ED",

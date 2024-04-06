@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ProductCard from "./components/ProductCard";
 
 export default async function Order() {
   const drinks = [
@@ -47,27 +48,12 @@ export default async function Order() {
   console.log(drinks);
 
   return (
-    <main className="flex min-h-screen min-w-fit flex-col items-center justify-between p-24 mx-0.5 border-2 border-black">
+    <main className="flex min-h-screen min-w-fit flex-col items-center justify-between p-24 mx-0.5 border-2 border-black bg-beigePrimary">
       {/* Drinks */}
       <div>
         <div className="flex flex-row gap-12">
           {drinks?.map((drink) => (
-            <div
-              key={drink.productId}
-              className="w-[250px] h-[450px] border-4 border-yellow"
-            >
-              <Image
-                src={"/order_bubble_tea.jpg"}
-                alt="drink image"
-                width={250}
-                height={250}
-                objectFit="contain"
-              />
-              <p className="text-2xl">{drink.productName}</p>
-              <p className="text-sm py-4">{drink.productDescription}</p>
-              <p className="text-xl py-8">${drink.productCost}.00</p>
-              <button>Add to Cart</button>
-            </div>
+            <ProductCard key={drink.productId} drink={drink} />
           ))}
         </div>
       </div>
