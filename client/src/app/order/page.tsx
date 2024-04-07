@@ -19,7 +19,7 @@ export default async function Order() {
       drinkAddonsOptions: {
         Sago: 1.0,
         "Grass Jelly": 2.0,
-        Pearls: 1.5,
+        Pearls: 2.0,
       },
     },
     {
@@ -39,7 +39,7 @@ export default async function Order() {
       drinkAddonsOptions: {
         Sago: 1.0,
         "Grass Jelly": 2.0,
-        Pearls: 1.5,
+        Pearls: 2.0,
       },
     },
   ];

@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -10,8 +12,32 @@ import {
   DialogTrigger,
 } from "../../_components/Dialog";
 
-const DrinkCard: React.FC<{drink: Drink}> = ({ drink }) => {
+const DrinkCard: React.FC<{ drink: Drink }> = ({ drink }) => {
+  const [sizePrice, setSizePrice] = useState<number>(0);
+  const [addonsPrice, setAddonsPrice] = useState<number>(0);
   const [totalDrinkPrice, setTotalDrinkPrice] = useState<number>(drink.productCost);
+
+  const handleSize = (value: number) => {
+    setSizePrice(value);
+    calculateTotalDrinkPrice(value, addonsPrice);
+  }
+
+  const handleDrinkAddons = (e: React.ChangeEvent<HTMLInputElement>, value: number) => {
+    const checkedBoolean = e.target.checked;
+    var addonPriceTemp = addonsPrice;
+    if (checkedBoolean) {
+      addonPriceTemp = addonPriceTemp + value;
+    } else {
+      addonPriceTemp = addonPriceTemp - value;
+    }
+    setAddonsPrice(addonPriceTemp);
+    calculateTotalDrinkPrice(sizePrice, addonPriceTemp);
+  }
+
+  const calculateTotalDrinkPrice = (sizePrice: number, addonsPrice: number) => {
+    const totalDrinkPrice = drink.productCost + sizePrice + addonsPrice;
+    setTotalDrinkPrice(totalDrinkPrice)
+  }
 
   return (
     <div key={drink.productId.toString()}>
@@ -41,7 +67,7 @@ const DrinkCard: React.FC<{drink: Drink}> = ({ drink }) => {
               <legend>Size Options</legend>
               {Object.entries(drink.drinkSizeOptions).map(([key, value]) => (
                 <div key={key}>
-                  <input type="radio" />
+                  <input type="radio" name="drinkSize" onChange={(e) => handleSize(value)} />
                   <label className="p-2">
                     {key}: ${String(drink.productCost + value)}
                   </label>
@@ -66,9 +92,9 @@ const DrinkCard: React.FC<{drink: Drink}> = ({ drink }) => {
               {Object.entries(drink.drinkAddonsOptions).map(
                 ([key, value]) => (
                   <div key={key}>
-                    <input type="checkbox" />
+                    <input type="checkbox" name="drinkAddons" value={value} onChange={(e) => handleDrinkAddons(e, value)} />
                     <label className="p-2">
-                      {key}: {String(value)}
+                      {key}: ${String(value)}.00
                     </label>
                   </div>
                 )
@@ -88,7 +114,10 @@ const DrinkCard: React.FC<{drink: Drink}> = ({ drink }) => {
               ))}
             </fieldset>
             <div className="flex flex-col">
-              <button className="items-center ">Add to Cart</button>
+              <p className="text-center">Size: ${sizePrice}.00</p>
+              <p className="text-center">Add-ons: ${addonsPrice}.00</p>
+              <p className="font-bold text-center">Total: ${totalDrinkPrice}.00</p>
+              <button className="border-2 w-fit mx-auto px-8">Add to Cart</button>
             </div>
           </div>
         </DialogContent>
