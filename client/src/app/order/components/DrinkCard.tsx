@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 import {
   Dialog,
@@ -8,30 +8,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "./Dialog";
+} from "../../_components/Dialog";
 
-interface Drink {
-  productId: Number;
-  productName: String;
-  productDescription: String;
-  productCategory: String;
-  productCost: Number;
-  productImageURL: String | null;
-  drinkSizeOptions: {
-    S: Number;
-    L: Number;
-    M: Number;
-  };
-  drinkSweetnessOptions: Number[];
-  drinkTemperatureOptions: String[];
-  drinkAddonsOptions: {
-    Sago: Number;
-    "Grass Jelly": Number;
-    Pearls: Number;
-  };
-}
+const DrinkCard: React.FC<{drink: Drink}> = ({ drink }) => {
+  const [totalDrinkPrice, setTotalDrinkPrice] = useState<number>(drink.productCost);
 
-const ProductCard = ({ drink }: any) => {
   return (
     <div key={drink.productId.toString()}>
       <Dialog>
@@ -69,7 +50,7 @@ const ProductCard = ({ drink }: any) => {
             </fieldset>
             <fieldset className="flex flex-row gap-2 mt-2">
               <legend>Sweetness Options</legend>
-              {drink.drinkSweetnessOptions.map((sweetnessOption: Number) => (
+              {drink.drinkSweetnessOptions.map((sweetnessOption: number) => (
                 <div key={String(sweetnessOption)}>
                   <input
                     type="radio"
@@ -116,4 +97,4 @@ const ProductCard = ({ drink }: any) => {
   );
 };
 
-export default ProductCard;
+export default DrinkCard;

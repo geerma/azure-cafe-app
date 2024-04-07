@@ -1,26 +1,4 @@
-import Image from "next/image";
-import ProductCard from "./components/ProductCard";
-
-interface Drink {
-  productId: Number,
-  productName: String,
-  productDescription: String,
-  productCategory: String,
-  productCost: Number,
-  productImageURL: String | null,
-  drinkSizeOptions: {
-    S: Number,
-    L: Number,
-    M: Number,
-  },
-  drinkSweetnessOptions: Number[],
-  drinkTemperatureOptions: String[],
-  drinkAddonsOptions: {
-    Sago: Number,
-    "Grass Jelly": Number,
-    Pearls: Number,
-  },
-}
+import DrinkCard from "./components/DrinkCard";
 
 export default async function Order() {
   const drinks: Drink[] = [
@@ -74,7 +52,7 @@ export default async function Order() {
       <div>
         <div className="flex flex-row gap-12">
           {drinks?.map((drink: Drink) => (
-            <ProductCard key={drink.productId.toString()} drink={drink} />
+            <DrinkCard key={drink.productId.toString()} drink={drink} />
           ))}
         </div>
       </div>
