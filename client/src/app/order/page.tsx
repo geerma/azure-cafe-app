@@ -1,3 +1,4 @@
+import Navigation from "../_components/Navigation";
 import DrinkCard from "./components/DrinkCard";
 
 export default async function Order() {
@@ -48,6 +49,7 @@ export default async function Order() {
 
   return (
     <main className="flex min-h-screen min-w-fit flex-col items-center justify-between p-24 mx-0.5 border-2 border-black bg-beigePrimary">
+      <Navigation />
       {/* Drinks */}
       <div>
         <div className="flex flex-row gap-12">
