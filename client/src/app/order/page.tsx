@@ -1,14 +1,16 @@
-import Image from "next/image";
+import Navigation from "../_components/Navigation";
+import DrinkCard from "./components/DrinkCard";
 
 export default async function Order() {
-  const drinks = [
+
+  const drinks: Drink[] = [
     {
       productId: 1,
       productName: "Matcha Milk Tea",
       productDescription: "Delicious matcha milk tea",
       productCategory: "Drink",
       productCost: 5.0,
-      productImageURL: null,
+      productImageURL: `${process.env.BASE_CDN_URL}/drink_bubbletea_1.jpg`,
       drinkSizeOptions: {
         S: 0.0,
         L: 2.0,
@@ -19,7 +21,7 @@ export default async function Order() {
       drinkAddonsOptions: {
         Sago: 1.0,
         "Grass Jelly": 2.0,
-        Pearls: 1.5,
+        Pearls: 2.0,
       },
     },
     {
@@ -28,7 +30,7 @@ export default async function Order() {
       productDescription: "Refreshing peach-flavoured fruit tea",
       productCategory: "Drink",
       productCost: 5.0,
-      productImageURL: null,
+      productImageURL: `${process.env.BASE_CDN_URL}/drink_bubbletea_1.jpg`,
       drinkSizeOptions: {
         S: 0.0,
         L: 2.0,
@@ -39,7 +41,7 @@ export default async function Order() {
       drinkAddonsOptions: {
         Sago: 1.0,
         "Grass Jelly": 2.0,
-        Pearls: 1.5,
+        Pearls: 2.0,
       },
     },
   ];
@@ -47,27 +49,13 @@ export default async function Order() {
   console.log(drinks);
 
   return (
-    <main className="flex min-h-screen min-w-fit flex-col items-center justify-between p-24 mx-0.5 border-2 border-black">
+    <main className="flex min-h-screen min-w-fit flex-col items-center justify-between p-24 mx-0.5 border-2 border-black bg-beigePrimary">
+      <Navigation />
       {/* Drinks */}
       <div>
         <div className="flex flex-row gap-12">
-          {drinks?.map((drink) => (
-            <div
-              key={drink.productId}
-              className="w-[250px] h-[450px] border-4 border-yellow"
-            >
-              <Image
-                src={"/order_bubble_tea.jpg"}
-                alt="drink image"
-                width={250}
-                height={250}
-                objectFit="contain"
-              />
-              <p className="text-2xl">{drink.productName}</p>
-              <p className="text-sm py-4">{drink.productDescription}</p>
-              <p className="text-xl py-8">${drink.productCost}.00</p>
-              <button>Add to Cart</button>
-            </div>
+          {drinks?.map((drink: Drink) => (
+            <DrinkCard key={drink.productId.toString()} drink={drink} />
           ))}
         </div>
       </div>
