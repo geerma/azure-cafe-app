@@ -2,6 +2,7 @@ import Navigation from "../_components/Navigation";
 import DrinkCard from "./components/DrinkCard";
 
 export default async function Order() {
+
   const drinks: Drink[] = [
     {
       productId: 1,
@@ -9,7 +10,7 @@ export default async function Order() {
       productDescription: "Delicious matcha milk tea",
       productCategory: "Drink",
       productCost: 5.0,
-      productImageURL: null,
+      productImageURL: `${process.env.BASE_CDN_URL}/drink_bubbletea_1.jpg`,
       drinkSizeOptions: {
         S: 0.0,
         L: 2.0,
@@ -29,7 +30,7 @@ export default async function Order() {
       productDescription: "Refreshing peach-flavoured fruit tea",
       productCategory: "Drink",
       productCost: 5.0,
-      productImageURL: null,
+      productImageURL: `${process.env.BASE_CDN_URL}/drink_bubbletea_1.jpg`,
       drinkSizeOptions: {
         S: 0.0,
         L: 2.0,

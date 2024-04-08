@@ -30,6 +30,7 @@ const config = {
       black: "#000000",
       gold: "#82724d",
       gray: "#42413b",
+      lightGray: "#f5f5f5",
       yellow: "#FFC226",
       white: "#FFFFFF",
     },

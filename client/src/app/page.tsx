@@ -9,31 +9,30 @@ export default function Home() {
     <main>
       <div className="flex flex-col min-h-screen min-w-max items-center justify-between py-96 text-yellow bg-cafeHomepage bg-cover">
         <div className="flex flex-col items-center gap-4">
-          <h1 className="text-4xl">Gosohada</h1>
-          <p className="text-3xl">고소하다</p>
+          <h1 className="text-4xl">Azure Cafe</h1>
         </div>
         <nav>
           <ul className="flex flex-row max-sm:flex-col divide-x-2 max-sm:divide-x-0 max-sm:py-12 divide-solid text-3xl">
-            <li className="px-12">
+            <li className="px-12 hover:shadow-2xl">
               <Link href="/">Home</Link>
             </li>
-            <li className="px-12">
+            <li className="px-12 hover:shadow-2xl">
               <Link href="/catalog#menu" scroll={false}>
                 Menu
               </Link>
             </li>
-            <li className="px-12">
+            <li className="px-12 hover:shadow-2xl">
               <Link href="/catalog#flowers" scroll={false}>
                 Flowers
               </Link>
             </li>
-            <li className="px-12">
+            <li className="px-12 hover:shadow-2xl">
               <Link href="/order">Online Order</Link>
             </li>
-            <li className="px-12">
+            <li className="px-12 hover:shadow-2xl">
               <Link href="/reservations">Reservations</Link>
             </li>
-            <li className="px-12">
+            <li className="px-12 hover:shadow-2xl">
               <Link href="/about">About / Contact Us</Link>
             </li>
           </ul>
@@ -97,7 +96,7 @@ export default function Home() {
               A perfect space for many activities, whether it be quiet studying
               or to catch up with friends.
             </p>
-          </div>
+          </div> 
           <div className="relative h-[600px] w-[800px]">
             <Image
               src={`${BASE_CDN_URL}/homepage_table_1.jpg`}
