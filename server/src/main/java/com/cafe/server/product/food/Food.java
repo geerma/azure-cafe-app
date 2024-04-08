@@ -11,8 +11,8 @@ public class Food extends Product {
 
     }
 
-    public Food(String productName, String productDescription, String productCategory, Double productCost) {
-        super(productName, productDescription, "Food", productCost);
+    public Food(String productName, String productDescription, String productCategory, Double productCost, String productImageURL) {
+        super(productName, productDescription, "Food", productCost, productImageURL);
     }
 
 }

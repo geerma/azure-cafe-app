@@ -69,7 +69,7 @@ The application currently uses Azure Blob Storage and Azure Content Delivery Net
 
 ## How to Run Locally
 
-- Set up a database (ex. Azure SQL Datbase)
+- Set up a database (ex. Azure SQL Database)
 
 - Fill in and utilize the following environment variables (ex. create `env.sh` -> type `source env.sh`):
 ```
@@ -86,4 +86,9 @@ JWT_EXPIRATION=
 - Run the Spring Boot application
 ```
 ./mvnw spring-boot:run
+```
+
+- Run the Next.js client (after installing dependencies)
+```
+npm run dev
 ```

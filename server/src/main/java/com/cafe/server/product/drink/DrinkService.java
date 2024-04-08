@@ -29,9 +29,9 @@ public class DrinkService {
     }
 
     public Drink createDrink(String productName, String productDescription, String productCategory,
-            Double productCost, Map<String, Double> drinkSizeOptions, List<Integer> drinkSweetnessOptions,
+            Double productCost, String productImageURL, Map<String, Double> drinkSizeOptions, List<Integer> drinkSweetnessOptions,
             List<String> drinkTemperatureOptions, Map<String, Double> drinkAddonsOptions) {
-        Drink newDrink = new Drink(productName, productDescription, "Drink", productCost, drinkSizeOptions,
+        Drink newDrink = new Drink(productName, productDescription, "Drink", productCost, productImageURL, drinkSizeOptions,
                 drinkSweetnessOptions, drinkTemperatureOptions, drinkAddonsOptions);
         return drinkRepository.save(newDrink);
     }

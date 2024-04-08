@@ -11,8 +11,8 @@ public class Merchandise extends Product {
 
     }
 
-    public Merchandise(String productName, String productDescription, String productCategory, Double productCost) {
-        super(productName, productDescription, "Merchandise", productCost);
+    public Merchandise(String productName, String productDescription, String productCategory, Double productCost, String productImageURL) {
+        super(productName, productDescription, "Merchandise", productCost, productImageURL);
     }
 
 }

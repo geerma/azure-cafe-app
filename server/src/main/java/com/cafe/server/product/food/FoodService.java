@@ -27,8 +27,8 @@ public class FoodService {
     }
 
     public Food createFood(String productName, String productDescription, String productCategory,
-            Double productCost) {
-        Food newFood = new Food(productName, productDescription, "Food", productCost);
+            Double productCost, String productImageURL) {
+        Food newFood = new Food(productName, productDescription, "Food", productCost, productImageURL);
         return foodRepository.save(newFood);
     }
 
