@@ -51,11 +51,11 @@ public class SecurityConfig {
                                 .antMatchers(HttpMethod.DELETE).hasAnyAuthority("ADMIN")
                                 .antMatchers("/api/v1/users/**").hasAnyAuthority("USER", "ADMIN")
                                 .antMatchers("/api/v1/customers/**").hasAnyAuthority("USER", "ADMIN")
-                                .antMatchers("/api/v1/products/**", "/api/v1/drinks/**", "/api/v1/foods/**", "/api/v1/merchandises/**").hasAnyAuthority("USER", "ADMIN")
+                                .antMatchers("/api/v1/drinks/**", "/api/v1/foods/**", "/api/v1/merchandises/**").hasAnyAuthority("USER", "ADMIN")
                                 .antMatchers("/api/v1/carts/**").hasAnyAuthority("USER", "ADMIN")
                                 .antMatchers("/api/v1/cartitems/**").hasAnyAuthority("USER", "ADMIN")
                                 .antMatchers("/api/v1/orders/**").hasAnyAuthority("USER", "ADMIN")
-                                .antMatchers("/", "/api/v1/auth/**", "/swagger-ui/**", "/swagger-ui**").permitAll()
+                                .antMatchers("/", "/api/v1/auth/**", "/swagger-ui/**", "/swagger-ui**", "/api/v1/products/**").permitAll()
                                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults());
 

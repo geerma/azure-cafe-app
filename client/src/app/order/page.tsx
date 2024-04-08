@@ -2,51 +2,8 @@ import Navigation from "../_components/Navigation";
 import DrinkCard from "./components/DrinkCard";
 
 export default async function Order() {
-
-  const drinks: Drink[] = [
-    {
-      productId: 1,
-      productName: "Matcha Milk Tea",
-      productDescription: "Delicious matcha milk tea",
-      productCategory: "Drink",
-      productCost: 5.0,
-      productImageURL: `${process.env.BASE_CDN_URL}/drink_bubbletea_1.jpg`,
-      drinkSizeOptions: {
-        S: 0.0,
-        L: 2.0,
-        M: 1.0,
-      },
-      drinkSweetnessOptions: [0, 50, 70, 100],
-      drinkTemperatureOptions: ["Cold", "Hot"],
-      drinkAddonsOptions: {
-        Sago: 1.0,
-        "Grass Jelly": 2.0,
-        Pearls: 2.0,
-      },
-    },
-    {
-      productId: 2,
-      productName: "Peach Fruit Tea",
-      productDescription: "Refreshing peach-flavoured fruit tea",
-      productCategory: "Drink",
-      productCost: 5.0,
-      productImageURL: `${process.env.BASE_CDN_URL}/drink_bubbletea_1.jpg`,
-      drinkSizeOptions: {
-        S: 0.0,
-        L: 2.0,
-        M: 1.0,
-      },
-      drinkSweetnessOptions: [0, 50, 70, 100],
-      drinkTemperatureOptions: ["Cold", "Hot"],
-      drinkAddonsOptions: {
-        Sago: 1.0,
-        "Grass Jelly": 2.0,
-        Pearls: 2.0,
-      },
-    },
-  ];
-
-  console.log(drinks);
+  const productData = await getProductData();
+  const drinks: Drink[] = productData.filter((product: { productCategory: string; }) => product.productCategory === 'Drink');
 
   return (
     <main className="flex min-h-screen min-w-fit flex-col items-center justify-between p-24 mx-0.5 border-2 border-black bg-beigePrimary">
@@ -63,8 +20,21 @@ export default async function Order() {
   );
 }
 
-async function getDrinkData() {
-  return;
+async function getProductData() {
+  const BASE_API_URL = process.env.BASE_API_URL;
+
+  const res = await fetch(BASE_API_URL + `/api/v1/products/`, {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch product data");
+  }
+
+  return res.json();
 }
 
 async function getFoodData() {
@@ -88,7 +58,7 @@ async function loginUser(username: String, password: String) {
   console.log(res);
 
   if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    throw new Error("Failed to login user");
   }
 
   return res.json();

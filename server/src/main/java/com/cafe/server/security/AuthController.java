@@ -1,5 +1,7 @@
 package com.cafe.server.security;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,9 +55,9 @@ public class AuthController {
 
             // Generate JWT token and return it as a string
             String jwt = tokenProvider.generateToken(authentication);
-            return ResponseEntity.ok(jwt);
+            return ResponseEntity.ok(Map.of("token", jwt));
         } catch (AuthenticationException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Invalid username or password"));
         }
     }
 

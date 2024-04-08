@@ -27,8 +27,8 @@ public class MerchandiseService {
     }
 
     public Merchandise createMerchandise(String productName, String productDescription, String productCategory,
-            Double productCost) {
-        Merchandise newMerchandise = new Merchandise(productName, productDescription, productCategory, productCost);
+            Double productCost, String productImageURL) {
+        Merchandise newMerchandise = new Merchandise(productName, productDescription, productCategory, productCost, productImageURL);
         return merchandiseRepository.save(newMerchandise);
     }
 

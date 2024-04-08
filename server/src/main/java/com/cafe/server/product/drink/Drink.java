@@ -42,10 +42,10 @@ public class Drink extends Product {
 
     }
 
-    public Drink(String productName, String productDescription, String productCategory, Double productCost,
+    public Drink(String productName, String productDescription, String productCategory, Double productCost, String productImageURL,
             Map<String, Double> drinkSizeOptions, List<Integer> drinkSweetnessOptions,
             List<String> drinkTemperatureOptions, Map<String, Double> drinkAddonsOptions) {
-        super(productName, productDescription, productCategory, productCost);
+        super(productName, productDescription, productCategory, productCost, productImageURL);
         this.drinkSizeOptions = drinkSizeOptions;
         this.drinkSweetnessOptions = drinkSweetnessOptions;
         this.drinkTemperatureOptions = drinkTemperatureOptions;
