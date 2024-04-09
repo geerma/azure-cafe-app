@@ -15,11 +15,15 @@ import com.cafe.server.cart.cartitem.CartItemRepository;
 import com.cafe.server.cart.cartitem.drinkcartitem.DrinkCartItem;
 import com.cafe.server.order.orderitem.OrderItem;
 import com.cafe.server.order.orderitem.drinkorderitem.DrinkOrderItem;
+import com.cafe.server.user.customer.Customer;
+import com.cafe.server.user.customer.CustomerService;
 
 @Service
 public class OrderService {
 
     private final CartService cartService;
+
+    private final CustomerService customerService;
 
     private final CartRepository cartRepository;
 
@@ -27,8 +31,9 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
 
-    public OrderService(CartService cartService, CartRepository cartRepository, CartItemRepository cartItemRepository, OrderRepository orderRepository) {
+    public OrderService(CartService cartService, CustomerService customerService, CartRepository cartRepository, CartItemRepository cartItemRepository, OrderRepository orderRepository) {
         this.cartService = cartService;
+        this.customerService = customerService;
         this.cartRepository = cartRepository;
         this.cartItemRepository = cartItemRepository;
         this.orderRepository = orderRepository;
