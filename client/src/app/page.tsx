@@ -7,7 +7,14 @@ export default function Home() {
 
   return (
     <main>
-      <div className="flex flex-col min-h-screen min-w-max items-center justify-between py-96 text-yellow bg-cafeHomepage bg-cover">
+      <div className="flex flex-col h-[98.2vh] min-w-max items-center justify-between py-96 text-yellow">
+          <Image
+            className="object-cover -z-10"
+            src={`${BASE_CDN_URL}/homepage_background.jpg`}
+            alt="Homepage background"
+            layout='fill'
+            objectFit='cover'
+          />
         <div className="flex flex-col items-center gap-4">
           <h1 className="text-4xl">Azure Cafe</h1>
         </div>
@@ -96,7 +103,7 @@ export default function Home() {
               A perfect space for many activities, whether it be quiet studying
               or to catch up with friends.
             </p>
-          </div> 
+          </div>
           <div className="relative h-[600px] w-[800px]">
             <Image
               src={`${BASE_CDN_URL}/homepage_table_1.jpg`}
