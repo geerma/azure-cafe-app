@@ -2,7 +2,6 @@ package com.cafe.server.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import io.jsonwebtoken.security.SecurityException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -62,25 +61,16 @@ public class JwtTokenProvider {
         return Long.parseLong(claims.getSubject());
     }
 
-    public boolean validateToken(String authToken) {
+    public boolean validateToken(String authToken) throws JwtException {
         try {
             Jwts.parserBuilder()
                     .setSigningKey(Keys.hmacShaKeyFor(jwtSecret.getBytes()))
                     .build()
                     .parseClaimsJws(authToken);
             return true;
-        } catch (SecurityException ex) {
-            System.out.println("Invalid JWT signature");
-        } catch (MalformedJwtException ex) {
-            System.out.println("Invalid JWT token");
-        } catch (ExpiredJwtException ex) {
-            System.out.println("Expired JWT token");
-        } catch (UnsupportedJwtException ex) {
-            System.out.println("Unsupported JWT token");
-        } catch (IllegalArgumentException ex) {
-            System.out.println("String is empty");
+        } catch (JwtException jwtException) {
+            throw jwtException; // Exception handled by doFilterInternal()
         }
-        return false;
     }
 
     public String resolveToken(HttpServletRequest request) {

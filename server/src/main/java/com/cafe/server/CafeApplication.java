@@ -132,16 +132,17 @@ public class CafeApplication {
     ApplicationListener<ApplicationReadyEvent> testCartService() {
         return event -> {
 
-            String chosenDrinkSize = "M"; // Size options: 'S' = +$0, 'M' = +$1, 'L' = +$2
+            String chosenDrinkSize = "Medium"; // Size options: 'S' = +$0, 'M' = +$1, 'L' = +$2
 
-            Integer chosenDrinkSweetness = 100; // Sweetness options: 0%, 50%, 70%, 100%
+            Integer chosenDrinkSweetness = 70; // Sweetness options: 0%, 50%, 70%, 100%
 
-            String chosenDrinkTemperature = "Hot"; // Temperature options: Cold, Hot
+            String chosenDrinkTemperature = "Cold"; // Temperature options: Cold, Hot
 
             Map<String, Integer> chosenDrinkAddons = Map.of(
-                    "Pearls", 0, // Pearls addon costs $1.5
-                    "Grass Jelly", 2, // Grass Jelly addon costs $2.0
-                    "Sago", 1 // Sago addon costs $1.0
+                    "Grass Jelly", 1, // Grass Jelly addon costs $1.0
+                    "Sago", 1, // Sago addon costs $1.0
+                    "Pearls", 0, // Pearls addon costs $1.0
+                    "Crystal Pearls", 1 // Crystal Pearls addon costs $1.0
             );
 
             DrinkRequest drinkRequest = new DrinkRequest(chosenDrinkSize, chosenDrinkSweetness, chosenDrinkTemperature,

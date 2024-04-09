@@ -22,6 +22,11 @@ public class CustomerService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    public Optional<Customer> getCustomerById(Long userId) {
+        Optional<Customer> customer = customerRepository.findById(userId);
+        return customer;
+    }
+
     public Customer registerCustomer(UserRegistrationRequest request) {
         String username = request.getUsername();
         String rawPassword = request.getPassword();

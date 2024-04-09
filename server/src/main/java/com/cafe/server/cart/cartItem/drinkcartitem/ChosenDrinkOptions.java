@@ -21,21 +21,23 @@ public class ChosenDrinkOptions {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long chosenDrinkOptionId;
 
-    public String chosenDrinkSize = "M"; // Size 'S', 'M', 'L'
+    public String chosenDrinkSize; // Size 'Small', 'Medium', 'Large'
 
-    public Integer chosenDrinkSweetness = 100; // Sweetness options: 0%, 50%, 70%, 100%
+    public Integer chosenDrinkSweetness; // Sweetness options: 0%, 50%, 70%, 100%
 
-    public String chosenDrinkTemperature = "Hot"; // Temperature options: Cold, Hot
+    public String chosenDrinkTemperature; // Temperature options: Cold, Hot
 
     @ElementCollection
     @CollectionTable(name = "chosen_drink_addons", joinColumns = @JoinColumn(name = "chosen_drink_option_id"))
     @MapKeyColumn(name = "addon")
     @Column(name = "addon_quantity")
-    public Map<String, Integer> chosenDrinkAddons = Map.of(
-            "Pearls", 0, // Pearls addon costs $1.5
-            "Grass Jelly", 0, // Grass Jelly addon costs $2.0
-            "Sago", 0 // Sago addon costs $1.0
-    );
+    public Map<String, Integer> chosenDrinkAddons; 
+
+    // Map of:
+    // "Grass Jelly", 0, // Grass Jelly addon costs $1.0
+    // "Sago", 0, // Sago addon costs $1.0
+    // "Pearls", 0, // Pearls addon costs $1.0
+    // "Crystal Pearls", 0 // Crystal Pearls addon costs $1.0
 
     protected ChosenDrinkOptions() {
 
