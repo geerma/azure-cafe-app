@@ -19,3 +19,15 @@ type Drink = {
     "Crystal Pearls": number;
   };
 };
+
+export type HoverComponentProps = {
+  title: string;
+  description: string;
+  imageURL: string;
+};
+
+export type BaseComponentProps = {
+  title: string;
+  imageURL: string;
+};
+
