@@ -1,4 +1,5 @@
 import Navigation from "../_components/Navigation";
+import { Drink } from "../_types/types";
 import DrinkCard from "./components/DrinkCard";
 
 export default async function Order() {
