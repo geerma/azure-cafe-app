@@ -4,10 +4,13 @@ import DrinkCard from "./components/DrinkCard";
 
 export default async function Order() {
   const productData = await getProductData();
-  const drinks: Drink[] = productData.filter((product: { productCategory: string; }) => product.productCategory === 'Drink');
+  const drinks: Drink[] = productData.filter(
+    (product: { productCategory: string }) =>
+      product.productCategory === "Drink"
+  );
 
   return (
-    <main className="flex min-h-screen min-w-fit flex-col items-center justify-between p-24 mx-0.5 border-2 border-black bg-beigePrimary">
+    <main className="flex min-h-screen min-w-fit flex-col items-center p-24 mx-0.5 border-2 border-black bg-beigePrimary">
       <Navigation />
       {/* Drinks */}
       <div>

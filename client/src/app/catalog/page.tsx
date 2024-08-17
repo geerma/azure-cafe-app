@@ -7,19 +7,19 @@ export default function Catalog() {
     <main className="flex min-h-screen flex-col items-center justify-between">
       <Navigation />
       <div>
-        <div className="min-h-[25vh] bg-lightGray text-center font-notosanskr">
-          <h1 className="pt-16 pb-8 text-4xl text-gray">Menu & Merchandise</h1>
-          <p className="p-2">
+        <div className="min-h-[25vh] pt-24 pb-12 bg-beigePrimary text-center font-notosanskr">
+          <h1 className="p-4 text-4xl text-gray">Menu & Merchandise</h1>
+          <p className="p-4">
             Choose from a wide variety of food and drink items
           </p>
-          <p className="p-2">
+          <p className="p-4">
             Browse our collection of merchandise that are perfect for gifts or
             personal enjoyment
           </p>
         </div>
         <div
-          id="#menu"
-          className="min-h-[100vh] w-screen bg-beigePrimary text-center flex flex-row"
+          id="#drinks"
+          className="min-h-[90vh] w-screen bg-beigePrimary text-center"
         >
           <Image
             src={"/catalog_foods.png"}
@@ -28,6 +28,11 @@ export default function Catalog() {
             height={750}
             className="m-auto"
           />
+        </div>
+        <div
+          id="#drinks"
+          className="min-h-[90vh] w-screen bg-beigePrimary text-center"
+        >
           <Image
             src={"/catalog_drinks.png"}
             alt="drinks catalog"
