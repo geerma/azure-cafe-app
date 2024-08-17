@@ -11,6 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../../_components/Dialog";
+import { Drink } from "@/app/_types/types";
 
 const DrinkCard: React.FC<{ drink: Drink }> = ({ drink }) => {
   const [sizePrice, setSizePrice] = useState<number>(0);

@@ -1,4 +1,4 @@
-type Drink = {
+export type Drink = {
   productId: number;
   productName: String;
   productDescription: String;
