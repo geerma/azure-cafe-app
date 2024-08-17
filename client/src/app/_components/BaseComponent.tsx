@@ -10,9 +10,7 @@ const BaseComponent: React.FC<BaseComponentProps> = ({
       style={{
         backgroundImage: `url(${imageURL})`,
         letterSpacing: "10px",
-        textTransform: "uppercase",
-        fontSize: "clamp(2rem, 5vw, 4rem)", // Responsive font size
-        backgroundColor: "#a2af6d", // Fallback color
+        backgroundColor: "#f5f5dc",
       }}
     >
       <div className="text-center px-6 py-4 bg-black bg-opacity-50 rounded-lg">
